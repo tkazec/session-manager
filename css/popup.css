@@ -1,0 +1,94 @@
+/*** global ***/
+a {
+	color: blue;
+	cursor: pointer;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a[title] {
+	text-decoration: none;
+}
+
+body {
+	color: black;
+	font-family: Arial, sans-serif;
+	font-size: 11px;
+	line-height: normal;
+	margin: 5px 8px 0px 8px;
+	width: 300px;
+}
+body > fieldset {
+	display: none;
+}
+
+button + button {
+	margin-left: -1px;
+}
+
+fieldset {
+	border: 1px solid #b2b2b2;
+	margin: 0 2px 10px 2px;
+	padding: 2px 5px 4px 5px;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid #b2b2b2;
+	margin: 5px auto;
+}
+
+legend {
+	padding: 0 1px;
+}
+
+.box {
+	display: -webkit-box;
+}
+
+.flex {
+	-webkit-box-flex: 1;
+	display: block;
+}
+
+
+/*** main view ***/
+#main {
+	-webkit-box-orient: vertical;
+	display: -webkit-box;
+}
+
+#main-saved-temp {
+	font-style: italic;
+	text-align: center;
+}
+#main-saved-list {
+	max-height: 500px;
+	overflow: auto;
+}
+
+#main-saved-list > div > a {
+	float: left;
+}
+
+#main-saved-list > div > span {
+	float: right;
+}
+
+
+/*** import view ***/
+#import-failed {
+	color: red;
+	display: none;
+}
+
+#import-success {
+	display: none;
+}
+
+
+/*** confirm view ***/
+#confirm > button {
+	float: right;
+}

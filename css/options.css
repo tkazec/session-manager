@@ -1,0 +1,67 @@
+/*** global ***/
+a {
+	color: blue;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+
+body {
+	font-family: sans-serif;
+	font-size: 13px;
+	line-height: 15px;
+	margin: 0 auto;
+	max-width: 600px;
+	padding: 10px;
+}
+
+div {
+	margin-bottom: 10px;
+	overflow: hidden;
+}
+
+h1 {
+	font-size: 18px;
+	margin: 10px 0;
+}
+h2 {
+	font-size: 14px;
+	margin: 20px 0 8px 0;
+}
+h1 + h2 {
+	margin-top: 10px;
+}
+
+label {
+	clear: right;
+	float: left;
+}
+
+li {
+	text-align: justify;
+}
+li + li {
+	margin-top: 2px;
+}
+
+p {
+	margin-bottom: 10px;
+	overflow: hidden;
+	text-align: justify;
+}
+
+ul {
+	margin-bottom: 10px;
+	padding-left: 40px;
+}
+
+section {
+	margin-bottom: 20px;
+	overflow: hidden;
+}
+
+select {
+	clear: right;
+	float: right;
+}

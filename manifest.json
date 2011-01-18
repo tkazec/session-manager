@@ -1,0 +1,18 @@
+{
+	"name": "Session Manager",
+	"version": "3.0.0",
+	"description": "Allows you to save, update, restore, remove, import, and export sets of tabs.",
+	"icons": {
+		"16": "icons/16.png",
+		"48": "icons/48.png",
+		"128": "icons/128.png"
+	},
+	"browser_action": {
+		"default_icon": "icons/19.png",
+		"default_title": "Session Manager",
+		"default_popup": "popup.html"
+	},
+	"permissions": ["tabs"],
+	"background_page": "background.html",
+	"options_page": "options.html"
+}

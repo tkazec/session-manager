@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf8">
+		<link rel="stylesheet" href="css/html5-reset.css">
+		<link rel="stylesheet" href="css/popup.css">
+	</head>
+	<body>
+		<div id="main">
+			<fieldset id="main-saved"><legend>Saved sessions (<a data-view="import">Import</a> - <a data-view="export" data-action="export">Export</a>)</legend>
+				<div id="main-saved-temp"></div>
+				<div id="main-saved-list"></div>
+			</fieldset>
+			
+			<fieldset id="main-save"><legend>Save this window's tabs (<a data-action="savetemp">as temp session</a>)</legend>
+				<div class="box">
+					<input type="text" id="main-save-name" class="flex" placeholder="Session name" data-action="save">
+					<button data-action="save">Save</button>
+				</div>
+			</fieldset>
+		</div>
+		
+		<fieldset id="import"><legend>Import</legend>
+			<p>NOTE: Any imported session with the same name as an existing session will replace the existing session.</p>
+			<div class="box">
+				<input type="text" id="import-text" class="flex" placeholder="Exported sessions" data-action="import">
+				<button data-action="import">Import</button>
+				<button data-view="main">Cancel</button>
+			</div>
+			<p id="import-failed">Import failed!</p>
+			<p id="import-success">Success!</p>
+		</fieldset>
+		
+		<fieldset id="export"><legend>Export</legend>
+			<p>Copy the text below, transfer it to another computer with Chrome and Session Manager installed, and import it.</p>
+			<div class="box">
+				<input type="text" id="export-text" class="flex" readonly>
+				<button data-view="main">Back</button>
+			</div>
+		</fieldset>
+		
+		<fieldset id="rename"><legend id="rename-legend"></legend>
+			<div class="box">
+				<input type="text" id="rename-text" class="flex" data-view="main" data-action="" data-actionindex="1">
+				<button data-view="main" data-action="" data-actionindex="1">Rename</button>
+				<button data-view="main">Cancel</button>
+			</div>
+		</fieldset>
+		
+		<fieldset id="confirm"><legend>Confirm</legend>
+			<p id="confirm-text"></p>
+			<button data-view="main">No</button><button data-view="main" data-action="">Yes</button>
+		</fieldset>
+		
+		<script src="js/jquery.js"></script>
+		<script src="js/popup.js"></script>
+	</body>
+</html>

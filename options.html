@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf8">
+		<title>Session Manager</title>
+		<link rel="stylesheet" href="css/html5-reset.css">
+		<link rel="stylesheet" href="css/options.css">
+	</head>
+	<body>
+		<section>
+			<h1>Options</h1>
+			
+			<h2>Opening sessions</h2>
+			<div>
+				<label for="open-add">Add to current window</label><select id="open-add"></select>
+				<label for="open-replace">Replace current window</label><select id="open-replace"></select>
+				<label for="open-new">Open in new normal window</label><select id="open-new"></select>
+				<label for="open-incognito">Open in new incognito window</label><select id="open-incognito"></select>
+			</div>
+		</section>
+		
+		<section>
+			<h1>Help</h1>
+			
+			<p>Session Manager is a simple extension that makes it easy to save, update, restore, and remove sets of tabs.</p>
+			
+			<ul>
+				<li>Create sessions for daily routines: Pages you open in the morning, noon and evening.</li>
+				<li>Group pages of common interest such as News, Financial and Social Networks.</li>
+				<li>Save the pages found during a research session that you'd like to revisit later.</li>
+			</ul>
+			
+			<h2>Saving sessions</h2>
+			<p>To save a session, enter the name in the textbox in the "Save this window's tabs" area and press enter. A session with that name containing the current window's tabs will be created. If a session with that name already exists, you will be asked to confirm replacing it.</p>
+			
+			<h2>Temp session</h2>
+			<p>The temporary session is a special session that, when the browser is opened, will automatically open and delete itself. Click "as temp session" next to "Save this window's tabs" to save or replace it. Except for renaming and replacing, the temp session can be opened and modified like a normal session as described below.</p>
+			
+			<h2>Session list</h2>
+			<ul>
+				<li>Hover over the tab count to view the url list.</li>
+				<li>Click "Open" while optionally holding modifier keys to open the session. Key+click combo configuration is in the "Opening sessions" options.</li>
+				<li>Click "Rename" and enter the new name to rename the session. If the new name is already in use by a session, you will be asked to confirm replacing it.</li>
+				<li>Click "Add" to add the current window's tabs to the session. You will be asked to confirm adding them.</li>
+				<li>Click "Replace" to replace the session with the current window's tabs. You will be asked to confirm the replacement.</li>
+				<li>Click "Remove" to remove the session. You will be asked to confirm the removal.</li>
+			</ul>
+			
+			<h2>Incognito</h2>
+			<p>"Allow in incognito" must be checked under Session Manager in chrome://extensions for the incognito features to work. Sessions can be saved and opened normally in existing incognito windows, and can be opened in new incognito windows with the combo in the "Opening sessions" options.</p>
+			
+			<h2>Comments/questions/bugs/suggestions?</h2>
+			<p>Leave a comment on Session Manager's <a href="https://chrome.google.com/webstore/detail/mghenlmbmjcpehccoangkdpagbcbkdpc">web store page</a>. I usually respond within a day.</p>
+		</section>
+		
+		<section id="changelog">
+			<h1>Changelog</h1>
+			
+			<h2>3.0.0 (2011-01-18)</h2>
+			<ul>
+				<li>Switched from modal dialogs to built in non blocking dialogs. Improves design and fixes Session Manager on Mac OS X and Linux (there is a Chrome bug that freezes extensions when they use modal dialogs) and import and export bugs.</li>
+				<li>Improved layout and design.</li>
+				<li>Added incognito support.</li>
+				<li>Added the "Replace" session action.</li>
+				<li>Added "Add" action to the temp session, and gave it a tab count and list.</li>
+				<li>Rewrote the code for the ~5th and ~6th time, it's finally perfect!</li>
+				<li>Added help and changelog to the options page.</li>
+				<li>Added update notification.</li>
+				<li>Probably a few more minor changes I forgot about.</li>
+			</ul>
+		</section>
+		
+		<script src="js/jquery.js"></script>
+		<script src="js/options.js"></script>
+	</body>
+</html>
