@@ -3,7 +3,7 @@
 /*** utils ***/
 var utils = {
 	view: function(name){
-		$("body > *").hide();
+		$("body").children().hide();
 		$("#" + name).show();
 	},
 	confirm: function(html, index){
@@ -54,7 +54,7 @@ var sessions = {
 		
 		if (sessions.temp) {
 			localStorage.temp = JSON.stringify(sessions.temp);
-			$temp.html("Temp session: " + sessions.display(null, true) + " (<a>Open</a> - <a>Add</a> - <a>Remove</a>)<hr>");
+			$temp.html("Temp session: " + sessions.display(null, true) + " (<span><a>Open</a> - <a>Add</a> - <a>Remove</a></span>)<hr>");
 		} else {
 			delete localStorage.temp;
 		}
@@ -67,7 +67,7 @@ var sessions = {
 			"<br><hr>").attr("data-name", name).appendTo($list);
 		});
 		
-		$("#main-saved").find("hr:last").remove();
+		$("hr", "#main-saved").last().remove();
 	},
 	display: function(name, count){
 		var prefix = "", session = name === null ? (name = "temp session", !count && (prefix = "the "), sessions.temp) : sessions.list[name];
@@ -162,8 +162,8 @@ var actions = {
 
 
 /*** events ***/
-$("#main-saved-list > div > span > a, #main-saved-temp > a").live("click", function(e){
-	var name = state.name = (this.parentNode.id === "main-saved-temp" ? null : this.parentNode.parentNode.dataset.name), action = this.innerText.toLowerCase();
+$("#main-saved-list, #main-saved-temp").delegate("span > a", "click", function(e){
+	var name = state.name = (this.parentNode.parentNode.id === "main-saved-temp" ? null : this.parentNode.parentNode.dataset.name), action = this.innerText.toLowerCase();
 	
 	if (action === "open") {
 		chrome.windows.getCurrent(function(win){
