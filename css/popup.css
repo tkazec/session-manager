@@ -15,7 +15,7 @@ body {
 	color: black;
 	font-family: Arial, sans-serif;
 	font-size: 11px;
-	line-height: normal;
+	line-height: 14px;
 	margin: 5px 8px 0px 8px;
 	width: 300px;
 }
@@ -63,15 +63,20 @@ legend {
 	font-style: italic;
 	text-align: center;
 }
+
 #main-saved-list {
-	max-height: 500px;
+	max-height: 480px;
 	overflow: auto;
 }
-
+#main-saved-list::-webkit-scrollbar {
+	width: 8px;
+}
+#main-saved-list::-webkit-scrollbar-thumb {
+	background-color: #b2b2b2;
+}
 #main-saved-list > div > a {
 	float: left;
 }
-
 #main-saved-list > div > span {
 	float: right;
 }

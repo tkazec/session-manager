@@ -68,6 +68,8 @@ var sessions = {
 		});
 		
 		$("hr", "#main-saved").last().remove();
+		
+		$list.children("div").css("margin-right", $list[0].scrollHeight > 492 ? 5 : 0);
 	},
 	display: function(name, count){
 		var prefix = "", session = name === null ? (name = "temp session", !count && (prefix = "the "), sessions.temp) : sessions.list[name];
