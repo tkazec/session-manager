@@ -12,7 +12,7 @@ var utils = {
 		yes.focus();
 	},
 	action: function(name, index){
-		state.action = name ? name : state.action;
+		state.action = name || state.action;
 		actions[state.action][index || 0](state.name);
 		sessions.load();
 	},
@@ -28,7 +28,7 @@ var utils = {
 };
 
 $("[data-view], [data-action]").live("click keypress", function(e){
-	if (this.tagName === "INPUT" && (e.type !== "keypress" || e.which !== 13)) { return; }
+	if ((this.tagName === "BUTTON" && e.type === "keypress") || (this.tagName === "INPUT" && (e.type !== "keypress" || e.which !== 13))) { return; }
 	
 	"view" in this.dataset && utils.view(this.dataset.view);
 	"action" in this.dataset && utils.action(this.dataset.action, this.dataset.actionindex);
@@ -69,7 +69,7 @@ var sessions = {
 		
 		$("hr", "#main-saved").last().remove();
 		
-		$list.children("div").css("margin-right", $list[0].scrollHeight > 492 ? 5 : 0);
+		$list.children().css("margin-right", Object.keys(sessions.list).length >= 13 ? 5 : 0);
 	},
 	display: function(name, count){
 		var prefix = "", session = name === null ? (name = "temp session", !count && (prefix = "the "), sessions.temp) : sessions.list[name];
