@@ -107,10 +107,13 @@ var actions = {
 	}, function(oname){
 		var nname = state.entered = $("#rename-text").val().trim();
 		
-		if (sessions.list[nname]) {
-			utils.confirm("Are you sure you want to replace " + sessions.display(nname) + " by renaming " + sessions.display(oname) + "?", 2);
-		} else {
-			utils.action("rename", 2);
+		if (nname) {
+			if (sessions.list[nname]) {
+				utils.confirm("Are you sure you want to replace " + sessions.display(nname) + " by renaming " + sessions.display(oname) + "?", 2);
+			} else {
+				utils.action("rename", 2);
+				utils.view("main");
+			}
 		}
 	}, function(oname){
 		sessions.list[state.entered] = sessions.list[oname];
@@ -156,9 +159,12 @@ var actions = {
 	
 	save: [function(){
 		var $name = $("#main-save-name"), name = state.name = $name.val().trim();
-		$name.val("");
 		
-		utils.action("replace", sessions.list[name] ? 2 : 1);
+		if (name) {
+			$name.val("");
+			
+			utils.action("replace", sessions.list[name] ? 2 : 1);
+		}
 	}]
 };
 

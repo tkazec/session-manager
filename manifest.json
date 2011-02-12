@@ -13,6 +13,7 @@
 		"default_popup": "popup.html"
 	},
 	"permissions": ["tabs"],
+	"omnibox": { "keyword": "session" },
 	"background_page": "background.html",
 	"options_page": "options.html"
 }
