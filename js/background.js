@@ -1,7 +1,7 @@
 (function(chrome, localStorage){
 
 /*** setup ***/
-var cversion = "3.1.0";
+var cversion = "3.1.1";
 
 localStorage.sessions = localStorage.sessions || '{}';
 localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
@@ -67,7 +67,7 @@ chrome.omnibox.onInputEntered.addListener(function(name){
 	
 	sessions[name] && chrome.windows.getCurrent(function(win){
 		chrome.tabs.getSelected(win.id, function(tab){
-			openSession(win.id, sessions[name], {});
+			openSession(win.id, sessions[name]);
 			
 			chrome.tabs.remove(tab.id);
 		});
@@ -79,7 +79,7 @@ defaultSuggestion();
 
 /*** open ***/
 this.openSession = function(cwinId, urls, e){
-	var open = JSON.parse(localStorage.open), action = (((e.ctrlKey || e.metaKey) && "ctrl/cmd+click") || (e.shiftKey && "shift+click") || (e.altKey && "alt+click") || "click");
+	var open = JSON.parse(localStorage.open), action = e == null ? open["add"] : (((e.ctrlKey || e.metaKey) && "ctrl/cmd+click") || (e.shiftKey && "shift+click") || (e.altKey && "alt+click") || "click");
 	
 	if (action === open["add"]) {
 		urls.forEach(function(v){
@@ -87,7 +87,7 @@ this.openSession = function(cwinId, urls, e){
 		});
 	} else if (action === open["replace"]) {
 		chrome.tabs.getAllInWindow(cwinId, function(tabs){
-			openSession(cwinId, urls, {});
+			openSession(cwinId, urls);
 			
 			tabs.forEach(function(tab){
 				chrome.tabs.remove(tab.id);
@@ -95,7 +95,7 @@ this.openSession = function(cwinId, urls, e){
 		});
 	} else if (action === open["new"] || action === open["incognito"]) {
 		chrome.windows.create({ url: urls.shift(), incognito: action === open["incognito"] }, function(win){
-			openSession(win.id, urls, {});
+			openSession(win.id, urls);
 		});
 	}
 }
