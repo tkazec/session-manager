@@ -1,7 +1,7 @@
 (function(chrome, localStorage){
 
 /*** setup ***/
-var cversion = "3.1.1";
+var cversion = "3.1.2";
 
 localStorage.sessions = localStorage.sessions || '{}';
 localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
@@ -34,47 +34,51 @@ if (localStorage.version === cversion) {
 
 
 /*** omnibox ***/
-function defaultSuggestion() {
-	chrome.omnibox.setDefaultSuggestion({ description: "Open a session in this window" });
-}
-
-chrome.omnibox.onInputChanged.addListener(function(text, suggest){
-	var sessions = JSON.parse(localStorage.sessions), text = text.trim(), ltext = text.toLowerCase(), suggestions = [];
+if (chrome.omnibox) {
+	function defaultSuggestion() {
+		chrome.omnibox.setDefaultSuggestion({ description: "Open a session in this window" });
+	}
 	
-	if (text.length) {
-		chrome.omnibox.setDefaultSuggestion({ description: "Open <match>" + text + "</match>" + (sessions[text] ? "" : " ...") + " in this window" });
+	chrome.omnibox.onInputChanged.addListener(function(text, suggest){
+		var sessions = JSON.parse(localStorage.sessions), text = text.trim(), ltext = text.toLowerCase(), suggestions = [];
 		
-		Object.keys(sessions).forEach(function(name){
-			var index = name.toLowerCase().indexOf(ltext);
+		if (text.length) {
+			chrome.omnibox.setDefaultSuggestion({ description: "Open <match>" + text + "</match>" + (sessions[text] ? "" : " ...") + " in this window" });
 			
-			index !== -1 && suggestions.push({
-				content: name,
-				description: name.substring(0, index) + "<match>" + name.substr(index, text.length) + "</match>" + name.substr(index + text.length),
-				index: index
+			Object.keys(sessions).forEach(function(name){
+				var index = name.toLowerCase().indexOf(ltext);
+				
+				index !== -1 && suggestions.push({
+					content: name,
+					description: name.substring(0, index) + "<match>" + name.substr(index, text.length) + "</match>" + name.substr(index + text.length),
+					index: index
+				});
+			});
+			
+			suggest(suggestions.sort(function(a, b){
+				return a.index === b.index ? (a.content.length === b.content.length ? 0 : a.content.length - b.content.length) : a.index - b.index;
+			}));
+		} else {
+			defaultSuggestion();
+		}
+	});
+	
+	chrome.omnibox.onInputEntered.addListener(function(name){
+		var sessions = JSON.parse(localStorage.sessions);
+		
+		sessions[name] && chrome.windows.getCurrent(function(win){
+			chrome.tabs.getSelected(win.id, function(tab){
+				openSession(win.id, sessions[name]);
+				
+				chrome.tabs.remove(tab.id);
 			});
 		});
-		
-		suggest(suggestions.sort(function(a, b){
-			return a.index === b.index ? (a.content.length === b.content.length ? 0 : a.content.length - b.content.length) : a.index - b.index;
-		}));
-	} else {
-		defaultSuggestion();
-	}
-});
-
-chrome.omnibox.onInputEntered.addListener(function(name){
-	var sessions = JSON.parse(localStorage.sessions);
-	
-	sessions[name] && chrome.windows.getCurrent(function(win){
-		chrome.tabs.getSelected(win.id, function(tab){
-			openSession(win.id, sessions[name]);
-			
-			chrome.tabs.remove(tab.id);
-		});
 	});
-});
-
-defaultSuggestion();
+	
+	defaultSuggestion();
+} else {
+	console.error("No omnibox API detected, skipping! UA is", navigator.userAgent);
+}
 
 
 /*** open ***/
