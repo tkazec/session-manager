@@ -10,3 +10,11 @@ $("select").each(function(){
 	open[this.id.split("-")[1]] = this.value;
 	localStorage.open = JSON.stringify(open);
 });
+
+$("#pinned-ignore").change(function(){
+	if (this.checked) {
+		localStorage.ignorepinned = true;
+	} else {
+		delete localStorage.ignorepinned;
+	}
+});

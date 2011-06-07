@@ -1,7 +1,7 @@
 (function(chrome, localStorage){
 
 /*** setup ***/
-var cversion = "3.1.2";
+var cversion = "3.2.0";
 
 localStorage.sessions = localStorage.sessions || '{}';
 localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
@@ -16,19 +16,6 @@ if (localStorage.version === cversion) {
 	}
 } else {
 	localStorage.readchanges = false;
-	
-	if (localStorage.version === "2.7.1") {
-		localStorage.v3backup = localStorage.sessions;
-
-		var combos = ["click", "shift+click", "ctrl/cmd+click", "alt+click"], open = JSON.parse(localStorage.open);
-		for (var k in open) {
-			var i = combos.indexOf(open[k]);
-			i !== -1 && combos.splice(i, 1);
-		}
-		open.incognito = combos[0] || "";
-		localStorage.open = JSON.stringify(open);
-	}
-	
 	localStorage.version = cversion;
 }
 

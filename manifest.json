@@ -1,7 +1,7 @@
 {
 	"name": "Session Manager",
-	"version": "3.1.2",
-	"description": "Allows you to save, update, restore, remove, import, and export sets of tabs.",
+	"version": "3.2.0",
+	"description": "A simple yet powerful extension for managing sets of tabs.",
 	"icons": {
 		"16": "icons/16.png",
 		"48": "icons/48.png",

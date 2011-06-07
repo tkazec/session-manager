@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf8">
 		<title>Session Manager</title>
@@ -16,6 +16,11 @@
 				<label for="open-replace">Replace current window</label><select id="open-replace"></select>
 				<label for="open-new">Open in new normal window</label><select id="open-new"></select>
 				<label for="open-incognito">Open in new incognito window</label><select id="open-incognito"></select>
+			</div>
+			
+			<h2>Pinned tabs</h2>
+			<div>
+				<label><input type="checkbox" id="pinned-ignore"> Ignore pinned tabs when saving sessions</label>
 			</div>
 		</section>
 		
@@ -53,11 +58,17 @@
 			<p>"Allow in incognito" must be checked under Session Manager in chrome://extensions for the incognito features to work. Sessions can be saved and opened normally in existing incognito windows, and can be opened in new incognito windows with the combo in the "Opening sessions" options.</p>
 			
 			<h2>Comments/questions/bugs/suggestions?</h2>
-			<p>Leave a comment on Session Manager's <a href="https://chrome.google.com/webstore/detail/mghenlmbmjcpehccoangkdpagbcbkdpc">web store page</a>. I usually respond within a day.</p>
+			<p>Leave a comment on Session Manager's <a href="https://chrome.google.com/webstore/detail/mghenlmbmjcpehccoangkdpagbcbkdpc">web store page</a>.</p>
 		</section>
 		
 		<section id="changelog">
 			<h1>Changelog</h1>
+			
+			<h2>3.2.0 (2011-06-06)</h2>
+			<ul>
+				<li>Added option to ignore pinned tabs when saving sessions.</li>
+				<li>Minor internal changes.</li>
+			</ul>
 			
 			<h2>3.1.2 (2011-03-12)</h2>
 			<ul>
