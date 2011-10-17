@@ -1,3 +1,4 @@
+"use strict";
 (function(chrome, localStorage){
 
 /*** setup ***/
@@ -21,56 +22,55 @@ if (localStorage.version === cversion) {
 
 
 /*** omnibox ***/
-if (chrome.omnibox) {
-	function defaultSuggestion() {
-		chrome.omnibox.setDefaultSuggestion({ description: "Open a session in this window" });
-	}
+function defaultSuggestion() {
+	chrome.omnibox.setDefaultSuggestion({ description: "Open a session in this window" });
+}
+
+defaultSuggestion();
+
+chrome.omnibox.onInputChanged.addListener(function(text, suggest){
+	var sessions = JSON.parse(localStorage.sessions), text = text.trim(), ltext = text.toLowerCase(), suggestions = [];
 	
-	chrome.omnibox.onInputChanged.addListener(function(text, suggest){
-		var sessions = JSON.parse(localStorage.sessions), text = text.trim(), ltext = text.toLowerCase(), suggestions = [];
+	if (text.length) {
+		chrome.omnibox.setDefaultSuggestion({
+			description: "Open <match>" + text + "</match>" + (sessions[text] ? "" : " ...") + " in this window"
+		});
 		
-		if (text.length) {
-			chrome.omnibox.setDefaultSuggestion({ description: "Open <match>" + text + "</match>" + (sessions[text] ? "" : " ...") + " in this window" });
+		Object.keys(sessions).forEach(function(name){
+			var index = name.toLowerCase().indexOf(ltext);
 			
-			Object.keys(sessions).forEach(function(name){
-				var index = name.toLowerCase().indexOf(ltext);
-				
-				index !== -1 && suggestions.push({
-					content: name,
-					description: name.substring(0, index) + "<match>" + name.substr(index, text.length) + "</match>" + name.substr(index + text.length),
-					index: index
-				});
-			});
-			
-			suggest(suggestions.sort(function(a, b){
-				return a.index === b.index ? (a.content.length === b.content.length ? 0 : a.content.length - b.content.length) : a.index - b.index;
-			}));
-		} else {
-			defaultSuggestion();
-		}
-	});
-	
-	chrome.omnibox.onInputEntered.addListener(function(name){
-		var sessions = JSON.parse(localStorage.sessions);
-		
-		sessions[name] && chrome.windows.getCurrent(function(win){
-			chrome.tabs.getSelected(win.id, function(tab){
-				openSession(win.id, sessions[name]);
-				
-				chrome.tabs.remove(tab.id);
+			index !== -1 && suggestions.push({
+				content: name,
+				description: name.substring(0, index) + "<match>" + name.substr(index, text.length) + "</match>" + name.substr(index + text.length),
+				index: index
 			});
 		});
-	});
+		
+		suggest(suggestions.sort(function(a, b){
+			return a.index === b.index ? (a.content.length === b.content.length ? 0 : a.content.length - b.content.length) : a.index - b.index;
+		}));
+	} else {
+		defaultSuggestion();
+	}
+});
+
+chrome.omnibox.onInputEntered.addListener(function(name){
+	var sessions = JSON.parse(localStorage.sessions);
 	
-	defaultSuggestion();
-} else {
-	console.error("No omnibox API detected, skipping! UA is", navigator.userAgent);
-}
+	sessions[name] && chrome.windows.getCurrent(function(win){
+		chrome.tabs.getSelected(win.id, function(tab){
+			openSession(win.id, sessions[name]);
+			
+			chrome.tabs.remove(tab.id);
+		});
+	});
+});
 
 
 /*** open ***/
-this.openSession = function(cwinId, urls, e){
-	var open = JSON.parse(localStorage.open), action = e == null ? open["add"] : (((e.ctrlKey || e.metaKey) && "ctrl/cmd+click") || (e.shiftKey && "shift+click") || (e.altKey && "alt+click") || "click");
+window.openSession = function(cwinId, urls, e){
+	var open = JSON.parse(localStorage.open),
+		action = e == null ? open["add"] : (((e.ctrlKey || e.metaKey) && "ctrl/cmd+click") || (e.shiftKey && "shift+click") || (e.altKey && "alt+click") || "click");
 	
 	if (action === open["add"]) {
 		urls.forEach(function(v){
@@ -89,6 +89,6 @@ this.openSession = function(cwinId, urls, e){
 			openSession(win.id, urls);
 		});
 	}
-}
+};
 
 })(chrome, localStorage);

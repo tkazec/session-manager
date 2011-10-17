@@ -1,3 +1,4 @@
+"use strict";
 (function($, chrome, localStorage){
 
 /*** utils ***/
@@ -171,11 +172,13 @@ var actions = {
 
 /*** events ***/
 $("#main-saved-list, #main-saved-temp").delegate("span > a", "click", function(e){
-	var name = state.name = (this.parentNode.parentNode.id === "main-saved-temp" ? null : this.parentNode.parentNode.dataset.name), action = this.innerText.toLowerCase();
+	var name = state.name = (this.parentNode.parentNode.id === "main-saved-temp" ? null : this.parentNode.parentNode.dataset.name),
+		action = this.innerText.toLowerCase();
 	
 	if (action === "open") {
 		chrome.windows.getCurrent(function(win){
 			background.openSession(win.id, name === null ? sessions.temp : sessions.list[name], e);
+			window.close();
 		});
 	} else {
 		utils.action(action);
@@ -193,7 +196,9 @@ sessions.load();
 
 if (localStorage.readchanges !== "true") {
 	$('<a href="options.html#changelog"" target="_blank" title="Session Manager was updated, click to read the changelog">!!</a>')
-		.css({ position: "absolute", top: 0, right: 2 }).click(function(){ localStorage.readchanges = true; }).appendTo("body");
+		.css({ position: "absolute", top: 0, right: 2 })
+		.click(function(){ localStorage.readchanges = true; })
+		.appendTo("body");
 }
 
 })(jQuery, chrome, localStorage);

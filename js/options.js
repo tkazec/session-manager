@@ -1,3 +1,5 @@
+"use strict";
+
 $("select").each(function(){
 	$(this)
 		.append('<option value="click">click</option>')
