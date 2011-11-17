@@ -1,3 +1,4 @@
+/*** global ***/
 a {
 	color: blue;
 	text-decoration: none;
@@ -7,7 +8,7 @@ a:hover {
 }
 
 body {
-	font: 13px/15px "DejaVu Sans", sans-serif; /* merge & dejavu & test */
+	font: 13px/15px "DejaVu Sans", sans-serif;
 	margin: 10px auto;
 	max-width: 600px;
 }
@@ -27,11 +28,6 @@ h2 {
 }
 h1 + h2 {
 	margin-top: 10px;
-}
-
-label {
-	clear: right;
-	float: left;
 }
 
 li {
@@ -57,7 +53,21 @@ section {
 	overflow: hidden;
 }
 
-select {
+
+/*** options ***/
+input {
+	vertical-align: baseline;
+}
+
+label {
+	display: block;
+}
+
+#open > label {
+	clear: right;
+	float: left;
+}
+#open > select {
 	clear: right;
 	float: right;
 }

@@ -22,7 +22,11 @@ var utils = {
 	},
 	tabs: function(cb){
 		chrome.tabs.getAllInWindow(null, function(tabs){
-			cb((localStorage.ignorepinned ? tabs.filter(function(t){ return !t.pinned }) : tabs).map(function(t){ return t.url; }));
+			if (localStorage.pinned === "skip") {
+				tabs = tabs.filter(function(t){ return !t.pinned; });
+			}
+			
+			cb(tabs.map(function(t){ return t.url; }));
 			sessions.load();
 		});
 	}

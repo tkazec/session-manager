@@ -6,6 +6,7 @@ var cversion = "3.2.0";
 
 localStorage.sessions = localStorage.sessions || '{}';
 localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
+localStorage.pinned = "skip";
 
 if (localStorage.version === cversion) {
 	if ("temp" in localStorage) {
@@ -79,6 +80,10 @@ window.openSession = function(cwinId, urls, e){
 	} else if (action === open["replace"]) {
 		chrome.tabs.getAllInWindow(cwinId, function(tabs){
 			openSession(cwinId, urls);
+			
+			if (localStorage.noreplacingpinned) {
+				tabs = tabs.filter(function(t){ return !t.pinned; });
+			}
 			
 			tabs.forEach(function(tab){
 				chrome.tabs.remove(tab.id);
