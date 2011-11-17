@@ -6,7 +6,7 @@ OUTDIR="$1/session-manager"
 OUTZIP="$OUTDIR.zip"
 GA=$2
 
-rm -rf $OUTDIR
+rm -rf $OUTDIR $OUTZIP
 cp -R $SRCDIR $OUTDIR
 cd $OUTDIR
 
