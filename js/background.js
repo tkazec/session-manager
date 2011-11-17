@@ -69,15 +69,22 @@ chrome.omnibox.onInputEntered.addListener(function(name){
 
 
 /*** open ***/
-window.openSession = function(cwinId, urls, e){
+window.openSession = function(cwinId, urls, e, isTemp){
 	var open = JSON.parse(localStorage.open),
 		action = e == null ? open["add"] : (((e.ctrlKey || e.metaKey) && "ctrl/cmd+click") || (e.shiftKey && "shift+click") || (e.altKey && "alt+click") || "click");
 	
-	if (action === open["add"]) {
+	for (var k in open) {
+		if (action === open[k]) {
+			action = k;
+			break;
+		}
+	}
+	
+	if (action === "add") {
 		urls.forEach(function(v){
 			chrome.tabs.create({ windowId: cwinId, url: v });
 		});
-	} else if (action === open["replace"]) {
+	} else if (action === "replace") {
 		chrome.tabs.getAllInWindow(cwinId, function(tabs){
 			openSession(cwinId, urls);
 			
@@ -89,11 +96,13 @@ window.openSession = function(cwinId, urls, e){
 				chrome.tabs.remove(tab.id);
 			});
 		});
-	} else if (action === open["new"] || action === open["incognito"]) {
-		chrome.windows.create({ url: urls.shift(), incognito: action === open["incognito"] }, function(win){
+	} else if (action === "new" || action === "incognito") {
+		chrome.windows.create({ url: urls.shift(), incognito: action === "incognito" }, function(win){
 			openSession(win.id, urls);
 		});
 	}
+	
+	e && _gaq.push(["_trackEvent", isTemp ? "Temp" : "Session", "Open", action]);
 };
 
 })(chrome, localStorage);

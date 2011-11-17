@@ -86,7 +86,7 @@ var sessions = {
 /*** actions ***/
 var actions = {
 	import: [function(){
-		var $text = $("#import-text");
+		var $text = $("#import-text"), success = true;
 		
 		try {
 			$.each(JSON.parse($text.val()), function(name, urls){
@@ -95,10 +95,14 @@ var actions = {
 			
 			$("#import-success").slideDown(500).delay(1500).queue(function(next){ utils.view("main"); $(this).hide(); next(); });
 		} catch (e) {
-			$("#import-failed").slideDown(500).delay(3000).slideUp(500);
+			$("#import-failed").slideDown(500).delay(1500).slideUp(500);
+			
+			success = false;
 		}
 		
 		$text.val("");
+		
+		background._gaq.push(["_trackEvent", "Action", "Import", success ? "Success" : "Failure"]);
 	}],
 	
 	export: [function(){
@@ -126,6 +130,8 @@ var actions = {
 		if (state.entered !== oname) {
 			delete sessions.list[oname];
 		}
+		
+		background._gaq.push(["_trackEvent", "Session", "Rename"]);
 	}],
 	
 	add: [function(name){
@@ -134,11 +140,15 @@ var actions = {
 		utils.tabs(function(tabs){
 			Array.prototype.push.apply(name === null ? sessions.temp : sessions.list[name], tabs);
 		});
+		
+		background._gaq.push(["_trackEvent", name === null ? "Temp": "Session", "Add"]);
 	}],
 	
 	replace: [function(name){
 		utils.confirm("Are you sure you want to replace " + sessions.display(name) + " with the current window's tabs?");
 	}, function(name){
+		background._gaq.push(["_trackEvent", "Session", sessions.list[name] ? "Replace" : "Save"]);
+		
 		utils.tabs(function(tabs){
 			sessions.list[name] = tabs;
 		});
@@ -154,12 +164,16 @@ var actions = {
 		} else {
 			delete sessions.list[name];
 		}
+		
+		background._gaq.push(["_trackEvent", name === null ? "Temp" : "Session", "Remove"]);
 	}],
 	
 	savetemp: [function(){
 		utils.tabs(function(tabs){
 			sessions.temp = tabs;
 		});
+		
+		background._gaq.push(["_trackEvent", "Temp", "Save"]);
 	}],
 	
 	save: [function(){
@@ -181,7 +195,7 @@ $("#main-saved-list, #main-saved-temp").on("click", "span > a", function(e){
 	
 	if (action === "open") {
 		chrome.windows.getCurrent(function(win){
-			background.openSession(win.id, name === null ? sessions.temp : sessions.list[name], e);
+			background.openSession(win.id, name === null ? sessions.temp : sessions.list[name], e, name === null);
 			window.close();
 		});
 	} else {
@@ -192,6 +206,8 @@ $("#main-saved-list, #main-saved-temp").on("click", "span > a", function(e){
 $("#export-text").click(function(){
 	$(this).fadeOut(500).fadeIn(500)[0].select();
 	document.execCommand("Copy");
+	
+	background._gaq.push(["_trackEvent", "Action", "Export"]);
 });
 
 
@@ -201,8 +217,13 @@ sessions.load();
 if (localStorage.readchanges !== "true") {
 	$('<a href="options.html#changelog"" target="_blank" title="Session Manager was updated, click to read the changelog">!!</a>')
 		.css({ position: "absolute", top: 0, right: 2 })
-		.click(function(){ localStorage.readchanges = true; })
-		.appendTo("body");
+		.click(function(){
+			localStorage.readchanges = true;
+			
+			background._gaq.push(["_trackEvent", "Action", "Changes"]);
+		}).appendTo("body");
 }
+
+background._gaq.push(["_trackPageview", "/popup"]);
 
 })(jQuery, chrome, localStorage);
