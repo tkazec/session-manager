@@ -2,7 +2,7 @@
 (function(chrome, localStorage){
 
 /*** setup ***/
-var cversion = "3.2.0";
+var cversion = "3.3.0";
 
 localStorage.sessions = localStorage.sessions || '{}';
 localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
