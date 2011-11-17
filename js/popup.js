@@ -28,7 +28,7 @@ var utils = {
 	}
 };
 
-$("[data-view], [data-action]").live("click keypress", function(e){
+$(document).on("click keypress", "[data-view], [data-action]", function(e){
 	if ((this.tagName === "BUTTON" && e.type === "keypress") || (this.tagName === "INPUT" && (e.type !== "keypress" || e.which !== 13))) { return; }
 	
 	"view" in this.dataset && utils.view(this.dataset.view);
@@ -171,7 +171,7 @@ var actions = {
 
 
 /*** events ***/
-$("#main-saved-list, #main-saved-temp").delegate("span > a", "click", function(e){
+$("#main-saved-list, #main-saved-temp").on("click", "span > a", function(e){
 	var name = state.name = (this.parentNode.parentNode.id === "main-saved-temp" ? null : this.parentNode.parentNode.dataset.name),
 		action = this.innerText.toLowerCase();
 	
