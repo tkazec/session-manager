@@ -1,4 +1,7 @@
 "use strict";
+
+var _gaq = _gaq || [];
+
 (function(chrome, localStorage){
 
 /*** setup ***/
@@ -20,6 +23,13 @@ if (localStorage.version === cversion) {
 	localStorage.readchanges = false;
 	localStorage.version = cversion;
 }
+
+_gaq.push(
+	["_setAccount", "##GA##"],
+	['_setCustomVar', 1, 'Version', cversion, 2],
+	['_setSessionCookieTimeout', 0],
+	["_trackPageview", "/"]
+);
 
 
 /*** omnibox ***/

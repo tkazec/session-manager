@@ -12,8 +12,9 @@
 		"default_title": "Session Manager",
 		"default_popup": "popup.html"
 	},
-	"permissions": ["tabs"],
-	"omnibox": { "keyword": "session" },
 	"background_page": "background.html",
-	"options_page": "options.html"
+	"offline_enabled": true,
+	"omnibox": { "keyword": "session" },
+	"options_page": "options.html",
+	"permissions": ["tabs"]
 }
