@@ -72,13 +72,18 @@ legend {
 	width: 8px;
 }
 #main-saved-list::-webkit-scrollbar-thumb {
-	background-color: #b2b2b2;
+	background-color: #B2B2B2;
 }
 #main-saved-list > div > a {
 	float: left;
 }
 #main-saved-list > div > span {
 	float: right;
+}
+
+#main-update {
+	background-color: #DDD;
+	display: none;
 }
 
 

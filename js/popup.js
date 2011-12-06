@@ -215,13 +215,11 @@ $("#export-text").click(function(){
 sessions.load();
 
 if (localStorage.readchanges !== "true") {
-	$('<a href="options.html#changelog"" target="_blank" title="Session Manager was updated, click to read the changelog">!!</a>')
-		.css({ position: "absolute", top: 0, right: 2 })
-		.click(function(){
-			localStorage.readchanges = true;
-			
-			background._gaq.push(["_trackEvent", "Action", "Changes"]);
-		}).appendTo("body");
+	$("#main-update").show().find("a").click(function(){
+		background._gaq.push(["_trackEvent", "Action", "Changes"]);
+	});
+	
+	localStorage.readchanges = true;
 }
 
 background._gaq.push(["_trackPageview", "/popup"]);

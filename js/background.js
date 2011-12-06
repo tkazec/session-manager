@@ -26,8 +26,8 @@ if (localStorage.version === cversion) {
 
 _gaq.push(
 	["_setAccount", "##GA##"],
-	['_setCustomVar', 1, 'Version', cversion, 2],
-	['_setSessionCookieTimeout', 0],
+	["_setCustomVar", 1, "Version", cversion, 2],
+	["_setSessionCookieTimeout", 0],
 	["_trackPageview", "/"]
 );
 
