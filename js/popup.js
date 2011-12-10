@@ -85,7 +85,7 @@ var sessions = {
 
 /*** actions ***/
 var actions = {
-	import: [function(){
+	"import": [function(){
 		var $text = $("#import-text"), success = true;
 		
 		try {
@@ -105,7 +105,7 @@ var actions = {
 		background._gaq.push(["_trackEvent", "Action", "Import", success ? "Success" : "Failure"]);
 	}],
 	
-	export: [function(){
+	"export": [function(){
 		$("#export-text").val(localStorage.sessions);
 	}],
 	
