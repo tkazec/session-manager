@@ -1,3 +1,4 @@
+(function(){
 "use strict";
 
 $("select").each(function(){
@@ -26,3 +27,5 @@ $("#pinned-noreplace").change(function(){
 }).prop("checked", localStorage.noreplacingpinned === "true");
 
 chrome.extension.getBackgroundPage()._gaq.push(["_trackPageview", "/options"]);
+
+})();

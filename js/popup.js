@@ -1,5 +1,5 @@
+(function(){
 "use strict";
-(function($, chrome, localStorage){
 
 /*** utils ***/
 var utils = {
@@ -224,4 +224,4 @@ if (localStorage.readchanges !== "true") {
 
 background._gaq.push(["_trackPageview", "/popup"]);
 
-})(jQuery, chrome, localStorage);
+})();

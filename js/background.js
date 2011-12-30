@@ -1,8 +1,7 @@
-"use strict";
-
 var _gaq = _gaq || [];
 
-(function(chrome, localStorage){
+(function(){
+"use strict";
 
 /*** setup ***/
 var cversion = "3.3.1";
@@ -33,12 +32,6 @@ _gaq.push(
 
 
 /*** omnibox ***/
-function defaultSuggestion() {
-	chrome.omnibox.setDefaultSuggestion({ description: "Open a session in this window" });
-}
-
-defaultSuggestion();
-
 chrome.omnibox.onInputChanged.addListener(function(text, suggest){
 	var sessions = JSON.parse(localStorage.sessions), text = text.trim(), ltext = text.toLowerCase(), suggestions = [];
 	
@@ -61,7 +54,7 @@ chrome.omnibox.onInputChanged.addListener(function(text, suggest){
 			return a.index === b.index ? (a.content.length === b.content.length ? 0 : a.content.length - b.content.length) : a.index - b.index;
 		}));
 	} else {
-		defaultSuggestion();
+		chrome.omnibox.setDefaultSuggestion({ description: "Open a session in this window" });
 	}
 });
 
@@ -77,11 +70,13 @@ chrome.omnibox.onInputEntered.addListener(function(name){
 	});
 });
 
+chrome.omnibox.setDefaultSuggestion({ description: "Open a session in this window" });
+
 
 /*** open ***/
 window.openSession = function(cwinId, urls, e, isTemp){
 	var open = JSON.parse(localStorage.open),
-		action = e == null ? open["add"] : (((e.ctrlKey || e.metaKey) && "ctrl/cmd+click") || (e.shiftKey && "shift+click") || (e.altKey && "alt+click") || "click");
+		action = e == null ? open.add : (((e.ctrlKey || e.metaKey) && "ctrl/cmd+click") || (e.shiftKey && "shift+click") || (e.altKey && "alt+click") || "click");
 	
 	for (var k in open) {
 		if (action === open[k]) {
@@ -115,4 +110,4 @@ window.openSession = function(cwinId, urls, e, isTemp){
 	e && _gaq.push(["_trackEvent", isTemp ? "Temp" : "Session", "Open", action]);
 };
 
-})(chrome, localStorage);
+})();
