@@ -8,7 +8,7 @@ var version = "3.3.1";
 
 localStorage.sessions = localStorage.sessions || '{}';
 localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
-localStorage.pinned = "skip";
+localStorage.pinned = localStorage.pinned || "skip";
 
 if (localStorage.version === version) {
 	if ("temp" in localStorage) {
