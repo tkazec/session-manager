@@ -4,13 +4,13 @@ var _gaq = _gaq || [];
 "use strict";
 
 /*** setup ***/
-var cversion = "3.3.1";
+var version = "3.3.1";
 
 localStorage.sessions = localStorage.sessions || '{}';
 localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
 localStorage.pinned = "skip";
 
-if (localStorage.version === cversion) {
+if (localStorage.version === version) {
 	if ("temp" in localStorage) {
 		JSON.parse(localStorage.temp).forEach(function(v){
 			chrome.tabs.create({ url: v });
@@ -20,12 +20,21 @@ if (localStorage.version === cversion) {
 	}
 } else {
 	localStorage.readchanges = false;
-	localStorage.version = cversion;
+	localStorage.version = version;
+}
+
+var browser = navigator.userAgent.match(/Chrome\/(\d\d?\.\d\d?)/);
+if (browser && browser[1] && browser[1] < 16) {
+	if (isNaN(localStorage.outdated) || Date.now() - localStorage.outdated > 1000 * 60 * 60 * 24 * 10) {
+		localStorage.outdated = "true";
+	}
+} else {
+	delete localStorage.outdated;
 }
 
 _gaq.push(
 	["_setAccount", "##GA##"],
-	["_setCustomVar", 1, "Version", cversion, 2],
+	["_setCustomVar", 1, "Version", version, 2],
 	["_setSessionCookieTimeout", 0],
 	["_trackPageview", "/"]
 );

@@ -43,6 +43,12 @@ legend {
 	padding: 0 1px;
 }
 
+ul {
+	margin: 4px 0;
+	padding-left: 20px;
+	text-align: justify;
+}
+
 .box {
 	display: -webkit-box;
 }
@@ -57,6 +63,12 @@ legend {
 #main {
 	-webkit-box-orient: vertical;
 	display: -webkit-box;
+}
+
+#main-outdated {
+	background-color: #FDDFDE;
+	display: none;
+	text-align: justify;
 }
 
 #main-saved-temp {
@@ -81,7 +93,7 @@ legend {
 	float: right;
 }
 
-#main-update {
+#main-changelog {
 	background-color: #DDD;
 	display: none;
 }

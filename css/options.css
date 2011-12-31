@@ -30,9 +30,6 @@ h1 + h2 {
 	margin-top: 10px;
 }
 
-li {
-	text-align: justify;
-}
 li + li {
 	margin-top: 2px;
 }
@@ -46,6 +43,7 @@ p {
 ul {
 	margin-bottom: 10px;
 	padding-left: 40px;
+	text-align: justify;
 }
 
 section {

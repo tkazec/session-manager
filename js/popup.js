@@ -214,10 +214,14 @@ $("#export-text").click(function(){
 /*** init ***/
 sessions.load();
 
+if (localStorage.outdated === "true") {
+	$("#main-outdated").show();
+	
+	localStorage.outdated = Date.now();
+}
+
 if (localStorage.readchanges !== "true") {
-	$("#main-update").show().find("a").click(function(){
-		background._gaq.push(["_trackEvent", "Action", "Changes"]);
-	});
+	$("#main-changelog").show();
 	
 	localStorage.readchanges = true;
 }

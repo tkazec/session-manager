@@ -7,6 +7,10 @@
 	</head>
 	<body>
 		<div id="main">
+			<fieldset id="main-outdated">
+				<p>Warning: You are running an old version of Chrome. For security, stability, and compatibility reasons, you should install the latest version from <a href="https://www.google.com/chrome" target="_blank">www.google.com/chrome</a>.</p>
+			</fieldset>
+			
 			<fieldset id="main-saved"><legend>Saved sessions (<a data-view="import">Import</a> - <a data-view="export" data-action="export">Export</a>)</legend>
 				<div id="main-saved-temp"></div>
 				<div id="main-saved-list"></div>
@@ -19,8 +23,16 @@
 				</div>
 			</fieldset>
 			
-			<fieldset id="main-update">
-				<p>Session Manager has been updated! <a href="options.html#changelog" target="_blank">View the changelog...</a></p>
+			<fieldset id="main-changelog">
+				<p>Session Manager has been updated! Changes include:</p>
+				
+				<ul>
+					<li>Vastly improved the update notification UI.</li>
+					<li>Added a workaround for a critical failure caused by a bug in very old versions of Chrome.</li>
+					<li>Added a little more detail to the options/help page.</li>
+				</ul>
+				
+				<p><a href="options.html#changelog" target="_blank">View the full list...</a></p>
 			</fieldset>
 		</div>
 		
