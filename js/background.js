@@ -4,7 +4,7 @@ var _gaq = _gaq || [];
 "use strict";
 
 /*** setup ***/
-var version = "3.3.1";
+var version = "3.3.2";
 
 localStorage.sessions = localStorage.sessions || '{}';
 localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
