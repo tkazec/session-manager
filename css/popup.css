@@ -60,7 +60,7 @@ ul {
 }
 
 #main-outdated {
-	background-color: #FDDFDE;
+	background: #FDDFDE;
 	display: none;
 	text-align: justify;
 }
@@ -78,17 +78,24 @@ ul {
 	width: 8px;
 }
 #main-saved-list::-webkit-scrollbar-thumb {
-	background-color: #B2B2B2;
+	background: #B2B2B2;
 }
-#main-saved-list > div > a {
-	float: left;
+#main-saved-list > div > big:hover {
+	color: #B2B2B2;
+	cursor: pointer;
+	border-bottom: 1px dashed #B2B2B2;
+}
+#main-saved-list > div > big + a {
+	float: right;
+	font-size: larger;
+	margin-top: -3px;
 }
 #main-saved-list > div > span {
 	float: right;
 }
 
 #main-changelog {
-	background-color: #DDD;
+	background: #DDD;
 	display: none;
 }
 

@@ -32,13 +32,6 @@ var utils = {
 	}
 };
 
-$(document).on("click keypress", "[data-view], [data-action]", function(e){
-	if ((this.tagName === "BUTTON" && e.type === "keypress") || (this.tagName === "INPUT" && (e.type !== "keypress" || e.which !== 13))) { return; }
-	
-	"view" in this.dataset && utils.view(this.dataset.view);
-	"action" in this.dataset && utils.action(this.dataset.action, this.dataset.actionindex);
-});
-
 
 /*** data ***/
 var background = chrome.extension.getBackgroundPage();
@@ -59,16 +52,16 @@ var sessions = {
 		
 		if (sessions.temp) {
 			localStorage.temp = JSON.stringify(sessions.temp);
-			$temp.html("Temp session: " + sessions.display(null, true) + " (<span><a>Open</a> - <a>Add</a> - <a>Remove</a></span>)<hr>");
+			$temp.html("<a>&times;</a> Temp session: " + sessions.display(null, true) + " - <a>Open</a> - <a>Add</a> (<a>tab</a>)<hr>");
 		} else {
 			delete localStorage.temp;
 		}
 		
 		localStorage.sessions = JSON.stringify(sessions.list);
 		$.each(sessions.list, function(name){
-			$("<div/>").html("<big>" + utils.escape(name) + "</big><br>" +
+			$("<div/>").html("<big>" + utils.escape(name) + "</big><a>&times;</a><br>" +
 				sessions.display(name, true) +
-				"<span><a>Open</a> - <a>Rename</a> - <a>Add</a> - <a>Replace</a> - <a>Remove</a></span>" +
+				"<span><a>Open</a> - <a>Add</a> (<a>tab</a>) - <a>Replace</a></span>" +
 			"<br><hr>").attr("data-name", name).appendTo($list);
 		});
 		
@@ -141,7 +134,18 @@ var actions = {
 			Array.prototype.push.apply(name === null ? sessions.temp : sessions.list[name], tabs);
 		});
 		
-		background._gaq.push(["_trackEvent", name === null ? "Temp": "Session", "Add"]);
+		background._gaq.push(["_trackEvent", name === null ? "Temp": "Session", "AddWin"]);
+	}],
+	
+	tab: [function(name){
+		utils.confirm("Are you sure you want to add the current tab to " + sessions.display(name) + "?");
+	}, function(name){
+		chrome.tabs.getSelected(null, function(tab){
+			(name === null ? sessions.temp : sessions.list[name]).push(tab.url);
+			sessions.load();
+		});
+		
+		background._gaq.push(["_trackEvent", name === null ? "Temp": "Session", "AddTab"]);
 	}],
 	
 	replace: [function(name){
@@ -189,15 +193,44 @@ var actions = {
 
 
 /*** events ***/
-$("#main-saved-list, #main-saved-temp").on("click", "span > a", function(e){
-	var name = state.name = (this.parentNode.parentNode.id === "main-saved-temp" ? null : this.parentNode.parentNode.dataset.name),
-		action = this.innerText.toLowerCase();
+$(document).on("click keypress", "[data-view], [data-action]", function(e){
+	if ((this.tagName === "BUTTON" && e.type === "keypress") || (this.tagName === "INPUT" && (e.type !== "keypress" || e.which !== 13))) {
+		return;
+	}
+	
+	"view" in this.dataset && utils.view(this.dataset.view);
+	"action" in this.dataset && utils.action(this.dataset.action, this.dataset.actionindex);
+});
+
+$("#main-saved-list").on("click", "big, div > a:not([title])", function(){
+	state.name = this.parentNode.dataset.name;
+	
+	utils.action(this.tagName === "BIG" ? "rename" : "remove");
+}).on("click", "span > a", function(e){
+	var action = this.innerText.toLowerCase(),
+		name = state.name = this.parentNode.parentNode.dataset.name;
 	
 	if (action === "open") {
 		chrome.windows.getCurrent(function(win){
-			background.openSession(win.id, name === null ? sessions.temp : sessions.list[name], e, name === null);
+			background.openSession(win.id, sessions.list[name], e, false);
 			window.close();
 		});
+	} else {
+		utils.action(action);
+	}
+});
+
+$("#main-saved-temp").on("click", "a:not([title])", function(e){
+	var action = this.innerText.toLowerCase();
+	state.name = null;
+	
+	if (action === "open") {
+		chrome.windows.getCurrent(function(win){
+			background.openSession(win.id, sessions.temp, e, true);
+			window.close();
+		});
+	} else if (action.length === 1) {
+		utils.action("remove");
 	} else {
 		utils.action(action);
 	}
