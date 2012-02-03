@@ -1,10 +1,16 @@
-var _gaq = _gaq || [];
-
 (function(){
 "use strict";
 
 /*** setup ***/
-var version = "3.3.3";
+var version = "3.3.3",
+	_gaq = window._gaq = _gaq || [];
+
+_gaq.push(
+	["_setAccount", "##GA##"],
+	["_setSessionCookieTimeout", 0],
+	["_setCustomVar", 1, "Version", version, 2],
+	["_trackPageview", "/"]
+);
 
 localStorage.sessions = localStorage.sessions || '{}';
 localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
@@ -15,8 +21,10 @@ if (localStorage.version === version) {
 		JSON.parse(localStorage.temp).forEach(function(v){
 			chrome.tabs.create({ url: v });
 		});
-	
+		
 		delete localStorage.temp;
+		
+		_gaq.push(["_trackEvent", "Temp", "Restore"]);
 	}
 } else {
 	localStorage.readchanges = false;
@@ -31,13 +39,6 @@ if (browser && browser[1] && browser[1] < 16) {
 } else {
 	delete localStorage.outdated;
 }
-
-_gaq.push(
-	["_setAccount", "##GA##"],
-	["_setCustomVar", 1, "Version", version, 2],
-	["_setSessionCookieTimeout", 0],
-	["_trackPageview", "/"]
-);
 
 
 /*** omnibox ***/
@@ -70,13 +71,11 @@ chrome.omnibox.onInputChanged.addListener(function(text, suggest){
 chrome.omnibox.onInputEntered.addListener(function(name){
 	var sessions = JSON.parse(localStorage.sessions);
 	
-	sessions[name] && chrome.windows.getCurrent(function(win){
-		chrome.tabs.getSelected(win.id, function(tab){
-			openSession(win.id, sessions[name]);
-			
-			chrome.tabs.remove(tab.id);
-		});
-	});
+	if (sessions[name]) {
+		openSession(undefined, sessions[name]);
+		
+		_gaq.push(["_trackEvent", "Session", "Omnibox"]);
+	}
 });
 
 chrome.omnibox.setDefaultSuggestion({ description: "Open a session in this window" });
@@ -85,7 +84,7 @@ chrome.omnibox.setDefaultSuggestion({ description: "Open a session in this windo
 /*** open ***/
 window.openSession = function(cwinId, urls, e, isTemp){
 	var open = JSON.parse(localStorage.open),
-		action = e == null ? open.add : (((e.ctrlKey || e.metaKey) && "ctrl/cmd+click") || (e.shiftKey && "shift+click") || (e.altKey && "alt+click") || "click");
+		action = e ? (((e.ctrlKey || e.metaKey) && "ctrl/cmd+click") || (e.shiftKey && "shift+click") || (e.altKey && "alt+click") || "click") : open.add;
 	
 	for (var k in open) {
 		if (action === open[k]) {
