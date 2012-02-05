@@ -4,7 +4,8 @@ a {
 	cursor: pointer;
 	text-decoration: none;
 }
-a:hover {
+a:hover, a:focus {
+	outline: none;
 	text-decoration: underline;
 }
 a[title] {
@@ -113,6 +114,6 @@ ul {
 
 
 /*** confirm view ***/
-#confirm > button {
+#confirm > span {
 	float: right;
 }

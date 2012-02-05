@@ -3,7 +3,8 @@ a {
 	color: blue;
 	text-decoration: none;
 }
-a:hover {
+a:hover, a:focus {
+	outline: none;
 	text-decoration: underline;
 }
 

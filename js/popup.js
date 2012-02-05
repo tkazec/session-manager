@@ -8,7 +8,7 @@ var utils = {
 		$("#" + name).show();
 	},
 	confirm: function(html, index){
-		var yes = $("#confirm-text").html(html).siblings().last().attr("data-actionindex", typeof index === "number" ? index : 1);
+		var yes = $("#confirm-text").html(html).siblings().children().eq(0).attr("data-actionindex", typeof index === "number" ? index : 1);
 		utils.view("confirm");
 		yes.focus();
 	},
