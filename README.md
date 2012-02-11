@@ -7,6 +7,8 @@ Eventual possibilities:
 * New name and/or logo.
 * Internationalize.
 * Sync support.
+* Restore pinned tabs.
+* Tab count -> session editor UI (select box) + open individual tabs.
 
 ---
 
