@@ -114,6 +114,6 @@ ul {
 
 
 /*** confirm view ***/
-#confirm > span {
+#export > span, #confirm > span {
 	float: right;
 }

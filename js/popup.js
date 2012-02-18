@@ -2,6 +2,9 @@
 "use strict";
 
 /*** utils ***/
+window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder;
+window.URL = window.webkitURL || window.URL;
+
 var utils = {
 	view: function(name){
 		$("body").children().hide();
@@ -98,8 +101,11 @@ var actions = {
 		background._gaq.push(["_trackEvent", "Action", "Import", success ? "Success" : "Failure"]);
 	}],
 	
-	"export": [function(){
-		$("#export-text").val(localStorage.sessions);
+	export: [function(){
+		var bb = new BlobBuilder();
+		bb.append(localStorage.sessions);
+		
+		$("#export-link").prop("href", window.URL.createObjectURL(bb.getBlob("text/plain")));
 	}],
 	
 	rename: [function(name){
@@ -234,13 +240,6 @@ $("#main-saved-temp").on("click", "a:not([title])", function(e){
 	} else {
 		utils.action(action);
 	}
-});
-
-$("#export-text").click(function(){
-	$(this).fadeOut(500).fadeIn(500)[0].select();
-	document.execCommand("Copy");
-	
-	background._gaq.push(["_trackEvent", "Action", "Export"]);
 });
 
 

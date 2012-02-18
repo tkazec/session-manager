@@ -49,11 +49,12 @@
 		</fieldset>
 		
 		<fieldset id="export"><legend>Export</legend>
-			<p>Copy the text below, transfer it to another computer with Chrome and Session Manager installed, and import it.</p>
-			<div class="box">
-				<input type="text" id="export-text" class="flex" readonly>
+			<p>To begin, simply click the link to save your sessions to a file. Then, transfer that file to another computer via your favorite service (e.g. email, dropbox, pastebin). Once it's there, just follow the import instructions.</p><br>
+			<p>NOTE: Chrome may not show that the file has been saved. Check your downloads folder for it.</p>
+			<span>
+				<a id="export-link" download="sessions">Got it, download sessions.txt!</a>
 				<button data-view="main">Back</button>
-			</div>
+			</span>
 		</fieldset>
 		
 		<fieldset id="rename"><legend id="rename-legend"></legend>
@@ -66,7 +67,10 @@
 		
 		<fieldset id="confirm"><legend>Confirm</legend>
 			<p id="confirm-text"></p>
-			<span><button data-view="main" data-action="">Yes</button> <button data-view="main">No</button></span>
+			<span>
+				<button data-view="main" data-action="">Yes</button>
+				<button data-view="main">No</button>
+			</span>
 		</fieldset>
 		
 		<script src="js/jquery.js"></script>
