@@ -220,7 +220,12 @@ var actions = {
 
 
 /*** events ***/
-$(document).on("click keypress", "[data-view], [data-action]", function(e){
+$("body").on("focus", "*", function(){
+	this.blur();
+	$("#main-save-name")[0].focus();
+	
+	$("body").off("focus", "*");
+}).on("click keypress", "[data-view], [data-action]", function(e){
 	if ((this.tagName === "BUTTON" && e.type === "keypress") || (this.tagName === "INPUT" && (e.type !== "keypress" || e.which !== 13))) {
 		return;
 	}
