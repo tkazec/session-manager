@@ -81,24 +81,41 @@ var sessions = {
 
 /*** actions ***/
 var actions = {
-	"import": [function(){
-		var $text = $("#import-text"), success = true;
+	import: [function(){
+		var reader = new FileReader();
 		
-		try {
-			$.each(JSON.parse($text.val()), function(name, urls){
-				sessions.list[name] = urls;
-			});
+		reader.onload = function(e){
+			try {
+				$.each(JSON.parse(e.target.result), function(name, urls){
+					sessions.list[name] = urls;
+				});
+				
+				state.entered = "Success";
+			} catch (e) {
+				state.entered = "ParseError";
+			}
 			
-			$("#import-success").slideDown(500).delay(1500).queue(function(next){ utils.view("main"); $(this).hide(); next(); });
-		} catch (e) {
-			$("#import-failed").slideDown(500).delay(1500).slideUp(500);
-			
-			success = false;
-		}
+			utils.action("import", 1);
+		};
 		
-		$text.val("");
+		reader.onerror = function(){
+			state.entered = "FileError";
+			utils.action("import", 1);
+		};
 		
-		background._gaq.push(["_trackEvent", "Action", "Import", success ? "Success" : "Failure"]);
+		reader.readAsText($("#import-file")[0].files[0]);
+	}, function(){
+		var status = state.entered,
+			success = status === "Success",
+			message = $("#import-message").text(success ? "Success!" : "Import failed!").delay(500).slideDown(500);
+		
+		success && message.delay(1500).queue(function(next){
+			utils.view("main");
+			message.hide();
+			next();
+		});
+		
+		background._gaq.push(["_trackEvent", "Action", "Import", state.entered]);
 	}],
 	
 	export: [function(){
@@ -240,6 +257,10 @@ $("#main-saved-temp").on("click", "a:not([title])", function(e){
 	} else {
 		utils.action(action);
 	}
+});
+
+$("#import-file").change(function(){
+	utils.action("import");
 });
 
 

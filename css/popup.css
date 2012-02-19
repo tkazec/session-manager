@@ -103,17 +103,12 @@ ul {
 
 
 /*** import view ***/
-#import-failed {
-	color: #F00;
-	display: none;
-}
-
-#import-success {
+#import-message {
 	display: none;
 }
 
 
-/*** confirm view ***/
+/*** export view ***/
 #export > span, #confirm > span {
 	float: right;
 }

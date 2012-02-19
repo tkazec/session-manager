@@ -38,14 +38,13 @@
 		</div>
 		
 		<fieldset id="import"><legend>Import</legend>
+			<p>Once you've exported your sessions and copied them over, simply select the session file and you'll instantly have everything back!</p><br>
 			<p>NOTE: Any imported session with the same name as an existing session will replace the existing session.</p>
 			<div class="box">
-				<input type="text" id="import-text" class="flex" placeholder="Exported sessions" data-action="import">
-				<button data-action="import">Import</button>
+				<input type="file" id="import-file" class="flex">
 				<button data-view="main">Cancel</button>
 			</div>
-			<p id="import-failed">Import failed!</p>
-			<p id="import-success">Success!</p>
+			<p id="import-message"></p>
 		</fieldset>
 		
 		<fieldset id="export"><legend>Export</legend>
