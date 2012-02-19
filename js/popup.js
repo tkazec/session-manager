@@ -222,7 +222,6 @@ var actions = {
 /*** events ***/
 $("body").on("focus", "*", function(){
 	this.blur();
-	$("#main-save-name")[0].focus();
 	
 	$("body").off("focus", "*");
 }).on("click keypress", "[data-view], [data-action]", function(e){
