@@ -110,7 +110,7 @@ var actions = {
 			message = $("#import-message").text(success ? "Success!" : "Import failed!").delay(500).slideDown();
 		
 		success && message.delay(1500).queue(function(next){
-			utils.view("main");
+			location.search ? window.close() : utils.view("main");
 			message.hide();
 			next();
 		});
@@ -287,6 +287,20 @@ if (localStorage.readchanges !== "true") {
 	localStorage.readchanges = true;
 }
 
-background._gaq.push(["_trackPageview", "/popup"]);
+if (location.search) {
+	$("#import [data-view]").click(function(){
+		window.close();
+		
+		return false;
+	});
+	
+	
+	
+	utils.view("import");
+	
+	background._gaq.push(["_trackPageview", "/import"]);
+} else {
+	background._gaq.push(["_trackPageview", "/popup"]);
+}
 
 })();
