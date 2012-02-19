@@ -103,6 +103,10 @@ ul {
 
 
 /*** import view ***/
+#import-file {
+	width: 0;
+}
+
 #import-message {
 	display: none;
 }
@@ -111,4 +115,9 @@ ul {
 /*** export view ***/
 #export > span, #confirm > span {
 	float: right;
+}
+
+#export-check {
+	color: #F00;
+	display: none;
 }

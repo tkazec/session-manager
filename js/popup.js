@@ -107,7 +107,7 @@ var actions = {
 	}, function(){
 		var status = state.entered,
 			success = status === "Success",
-			message = $("#import-message").text(success ? "Success!" : "Import failed!").delay(500).slideDown(500);
+			message = $("#import-message").text(success ? "Success!" : "Import failed!").delay(500).slideDown();
 		
 		success && message.delay(1500).queue(function(next){
 			utils.view("main");
@@ -123,6 +123,10 @@ var actions = {
 		bb.append(localStorage.sessions);
 		
 		$("#export-link").prop("href", window.URL.createObjectURL(bb.getBlob("text/plain")));
+	}, function(){
+		$("#export-check").fadeIn().delay(2000).fadeOut();
+		
+		background._gaq.push(["_trackEvent", "Action", "Export"]);
 	}],
 	
 	rename: [function(name){
