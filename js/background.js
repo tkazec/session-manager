@@ -2,7 +2,7 @@
 "use strict";
 
 /*** setup ***/
-var version = "3.3.3", _gaq = window._gaq = _gaq || [];
+var version = "3.4.0", _gaq = window._gaq = _gaq || [];
 
 _gaq.push(
 	["_setAccount", "##GA##"],

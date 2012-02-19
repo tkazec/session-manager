@@ -294,8 +294,6 @@ if (location.search) {
 		return false;
 	});
 	
-	
-	
 	utils.view("import");
 	
 	background._gaq.push(["_trackPageview", "/import"]);
