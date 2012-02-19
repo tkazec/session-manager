@@ -31,7 +31,7 @@ if (localStorage.version === version) {
 }
 
 var browser = navigator.userAgent.match(/Chrome\/(\d\d?\.\d\d?)/);
-if (browser && browser[1] && browser[1] < 16) {
+if (browser && browser[1] && browser[1] < 17) {
 	if (isNaN(localStorage.outdated) || Date.now() - localStorage.outdated > 1000 * 60 * 60 * 24 * 10) {
 		localStorage.outdated = "true";
 	}
