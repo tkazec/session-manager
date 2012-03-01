@@ -3,12 +3,12 @@
 	"version": "3.4.0",
 	"description": "A simple yet powerful extension for managing sets of tabs.",
 	"icons": {
-		"16": "icons/16.png",
-		"48": "icons/48.png",
-		"128": "icons/128.png"
+		"16": "img/16.png",
+		"48": "img/48.png",
+		"128": "img/128.png"
 	},
 	"browser_action": {
-		"default_icon": "icons/19.png",
+		"default_icon": "img/19.png",
 		"default_title": "Session Manager",
 		"default_popup": "popup.html"
 	},
