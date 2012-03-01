@@ -2,13 +2,22 @@ A simple yet powerful Chrome extension for managing sets of tabs. https://chrome
 
 ---
 
-Eventual possibilities:
+Posts involving Session Manager:
+
+* https://plus.google.com/114368870393867455297/posts/ddK2R61SKDe
+* https://plus.google.com/114368870393867455297/posts/6ER4wjVqhDB
+* https://plus.google.com/114368870393867455297/posts/RLopDaH9d6r
+
+---
+
+Todo/eventual possibilities:
 
 * New name and/or logo.
 * Internationalize.
 * Sync support.
 * Restore pinned tabs.
 * Tab count -> session editor UI (select box) + open individual tabs.
+* Add "none" key+click combo.
 
 ---
 
