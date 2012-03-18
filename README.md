@@ -17,7 +17,6 @@ Todo/eventual possibilities:
 * Sync support.
 * Restore pinned tabs.
 * Tab count -> session editor UI (select box) + open individual tabs.
-* Add "none" key+click combo.
 
 ---
 

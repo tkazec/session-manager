@@ -1,5 +1,4 @@
-(function(){
-"use strict";
+(function(){ "use strict";
 
 /*** utils ***/
 window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder;

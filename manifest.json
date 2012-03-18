@@ -1,6 +1,6 @@
 {
 	"name": "Session Manager",
-	"version": "3.4.0",
+	"version": "3.4.1",
 	"description": "A simple yet powerful extension for managing sets of tabs.",
 	"icons": {
 		"16": "img/16.png",

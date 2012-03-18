@@ -1,5 +1,4 @@
-(function(){
-"use strict";
+(function(){ "use strict";
 
 $("select").each(function(){
 	$(this)
