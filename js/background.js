@@ -114,6 +114,8 @@ window.openSession = function(cwinId, urls, e, isTemp){
 		chrome.windows.create({ url: urls.shift(), incognito: action === "incognito" }, function(win){
 			openSession(win.id, urls);
 		});
+	} else {
+		return false;
 	}
 	
 	e && _gaq.push(["_trackEvent", isTemp ? "Temp" : "Session", "Open", action]);

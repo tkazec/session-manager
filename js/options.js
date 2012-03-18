@@ -3,10 +3,11 @@
 
 $("select").each(function(){
 	$(this)
+		.append('<option value="none">&lt;none&gt;</option>')
 		.append('<option value="click">click</option>')
 		.append('<option value="shift+click">shift+click</option>')
 		.append('<option value="ctrl/cmd+click">ctrl/cmd+click</option>')
-		.append('<option value="alt+click">alt+click</option>')
+		.append('<option value="alt+click">alt/opt+click</option>')
 		.find("option[value='" + JSON.parse(localStorage.open)[this.id.split("-")[1]] + "']").prop("selected", true);
 }).change(function(){
 	var open = JSON.parse(localStorage.open);

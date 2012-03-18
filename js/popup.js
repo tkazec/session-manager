@@ -243,8 +243,7 @@ $("#main-saved-list").on("click", "big, div > a:not([title])", function(){
 	
 	if (action === "open") {
 		chrome.windows.getCurrent(function(win){
-			background.openSession(win.id, sessions.list[name], e, false);
-			window.close();
+			background.openSession(win.id, sessions.list[name], e, false) !== false && window.close();
 		});
 	} else {
 		utils.action(action);
@@ -257,8 +256,7 @@ $("#main-saved-temp").on("click", "a:not([title])", function(e){
 	
 	if (action === "open") {
 		chrome.windows.getCurrent(function(win){
-			background.openSession(win.id, sessions.temp, e, true);
-			window.close();
+			background.openSession(win.id, sessions.temp, e, true) !== false && window.close();
 		});
 	} else if (action.length === 1) {
 		utils.action("remove");
