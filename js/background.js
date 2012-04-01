@@ -12,7 +12,7 @@ localStorage.pinned = localStorage.pinned || "skip";
 _gaq.push(
 	["_setAccount", "##GA##"],
 	["_setSessionCookieTimeout", 0],
-	["_setCustomVar", 1, "Version", version, 2],
+	["_setCustomVar", 1, "Version", version, 1],
 	["_trackPageview", "/"]
 );
 
