@@ -4,6 +4,7 @@
 SRCDIR="$( cd "$( dirname "$0" )" && pwd )"
 OUTDIR=$1
 GAID=$2
+ECID=$3
 
 rm -rf $OUTDIR
 cp -R $SRCDIR $OUTDIR
