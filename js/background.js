@@ -42,8 +42,8 @@ if (browser && browser[1] && browser[1] < 17) {
 
 
 /*** omnibox ***/
-chrome.omnibox.onInputChanged.addListener(function(text, suggest){
-	var sessions = JSON.parse(localStorage.sessions), text = text.trim(), ltext = text.toLowerCase(), suggestions = [];
+chrome.omnibox.onInputChanged.addListener(function(typed, suggest){ // v8#1942 TEMPFIX: created `typed`
+	var sessions = JSON.parse(localStorage.sessions), text = typed.trim(), ltext = text.toLowerCase(), suggestions = [];
 	
 	if (text.length) {
 		chrome.omnibox.setDefaultSuggestion({
