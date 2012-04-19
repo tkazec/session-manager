@@ -80,7 +80,7 @@ var sessions = {
 
 /*** actions ***/
 var actions = {
-	import: [function(){
+	"import": [function(){ // v8#1496 TEMPFIX: add quotes
 		var reader = new FileReader();
 		
 		reader.onload = function(e){
@@ -117,7 +117,7 @@ var actions = {
 		background._gaq.push(["_trackEvent", "Action", "Import", state.entered]);
 	}],
 	
-	export: [function(){
+	"export": [function(){ // v8#1496 TEMPFIX: add quotes
 		var bb = new BlobBuilder();
 		bb.append(localStorage.sessions);
 		
