@@ -17,6 +17,8 @@ Todo/eventual possibilities:
 * Sync support.
 * Restore pinned tabs.
 * Tab count -> session editor UI (select box) + open individual tabs.
+* Autosaved session.
+* Session organizing (sorting).
 
 ---
 

@@ -69,7 +69,7 @@ var sessions = {
 		
 		$("hr", "#main-saved").last().remove();
 		
-		$list.children().css("margin-right", Object.keys(sessions.list).length >= 13 ? 5 : 0);
+		$list.children().css("margin-right", Object.keys(sessions.list).length > 10 ? 5 : 0);
 	},
 	display: function(name, count){
 		var prefix = "", session = name === null ? (name = "temp session", !count && (prefix = "the "), sessions.temp) : sessions.list[name];

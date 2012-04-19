@@ -73,7 +73,7 @@ ul {
 }
 
 #main-saved-list {
-	max-height: 480px;
+	max-height: 398px;
 	overflow: auto;
 }
 #main-saved-list::-webkit-scrollbar {
