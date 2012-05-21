@@ -13,7 +13,7 @@ cd $OUTDIR
 rm build.sh
 rm -rf .git
 
-sed -i '' -e "s/##GA##/$GAID/" js/background.js
-sed -i '' -e "s/##EC##/$ECID/" js/errors.js
+sed -i '' -e "s/##GA##/$GAID/" scripts/background.js
+sed -i '' -e "s/##EC##/$ECID/" scripts/errors.js
 
 find . -path '*/.*' -prune -o -type f -print | zip session-manager.zip -@
