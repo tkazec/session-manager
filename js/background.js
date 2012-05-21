@@ -3,7 +3,7 @@ var _gaq = _gaq || [];
 (function(){ "use strict";
 
 /*** setup ***/
-var version = "3.4.3";
+var version = "4.0.0";
 
 localStorage.sessions = localStorage.sessions || '{}';
 localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
@@ -39,6 +39,12 @@ if (browser && browser[1] && browser[1] < 18) {
 } else {
 	delete localStorage.outdated;
 }
+
+document.body.appendChild(function () {
+	var el = document.createElement("script");
+	el.src = "https://ssl.google-analytics.com/ga.js";
+	return el;
+}());
 
 
 /*** omnibox ***/
