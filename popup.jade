@@ -1,76 +1,67 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Session Manager</title>
-		<link rel="stylesheet" href="styles/reset.css">
-		<link rel="stylesheet" href="styles/popup.css">
-	</head>
-	<body>
-		<div id="main">
-			<fieldset id="main-outdated">
-				<p>Warning: You are running an old version of Chrome. For security, stability, and compatibility reasons, you should install the latest version from <a href="https://www.google.com/chrome" target="_blank">www.google.com/chrome</a>.</p>
-			</fieldset>
-			
-			<fieldset id="main-saved"><legend>Saved sessions (<a href="popup.html?import" target="_blank">Import</a> - <a data-view="export" data-action="export">Export</a>)</legend>
-				<div id="main-saved-temp"></div>
-				<div id="main-saved-list"></div>
-			</fieldset>
-			
-			<fieldset id="main-save"><legend>Save this window's tabs (<a data-action="savetemp">as temp session</a>)</legend>
-				<div class="box">
-					<input type="text" id="main-save-name" class="flex" placeholder="Session name" data-action="save">
-					<button data-action="save">Save</button>
-				</div>
-			</fieldset>
-			
-			<fieldset id="main-changelog">
-				<p>Session Manager has been updated!</p>
+doctype 5
+html(lang="en")
+	head
+		meta(charset="utf-8")
+		title Session Manager
+		link(rel="stylesheet", href="styles/popup.css")
+	body
+		div.row
+			div.span4.btn-toolbar#toolbar
+				div.btn-group
+					button.btn.dropdown-toggle(data-toggle="dropdown")
+						i.icon-folder-open
+						| 
+						span.caret
+					ul.dropdown-menu
+						li: a Open in current window
+						li: a Replace current window
+						li: a Open in new window
+						li: a Open in new incognito window
 				
-				<ul>
-					<li>Worked around a critical Chrome 18 bug.
-					<li>Worked around a critical Chrome 11-14 bug.
-				</ul>
-			</fieldset>
-		</div>
+				div.btn-group
+					button.btn: i.icon-download-alt
+					button.btn: i.icon-edit
+					button.btn: i.icon-trash
+				
+				div.btn-group
+					button.btn.dropdown-toggle(data-toggle="dropdown")
+						i.icon-cog
+						| 
+						span.caret
+					ul.dropdown-menu.pull-right
+						li: a Options
+						li: a Help
+						li: a About
 		
-		<fieldset id="import"><legend>Import</legend>
-			<p>Once you've exported your sessions and copied them over, simply select the session file and you'll instantly have everything back!</p><br>
-			<p>NOTE: Any imported session with the same name as an existing session will replace the existing session.</p>
-			<div class="box">
-				<input type="file" id="import-file" class="flex">
-				<button data-view="main">Cancel</button>
-			</div>
-			<p id="import-message"></p>
-		</fieldset>
+		div.row
+			div.span4
+				ul.unstyled#list
+					li
+						a Start
+						span 7
+					li
+						a Scalable TD
+						span 8
+					li
+						a Article
+						span 14
+					li
+						a scalabletd2
+						span 5
+					li
+						a fooo
+						span 1
+					li
+						a heroku
+						span 7
 		
-		<fieldset id="export"><legend>Export</legend>
-			<p>To begin, simply click the link to save your sessions to a file. Then, transfer that file to another computer via your favorite service (e.g. email, dropbox, pastebin). Once it's there, just follow the import instructions.</p><br>
-			<p>NOTE: Chrome may not show that the file has been saved. Check your downloads folder for it. <span id="export-check">&#x2713;</span></p>
-			<span>
-				<a id="export-link" download="sessions.txt" data-action="" data-actionindex="1">Got it, download sessions.txt!</a>
-				<button data-view="main">Back</button>
-			</span>
-		</fieldset>
+		div.row
+			div.span4.box
+				input.flex#save-name(type="text", placeholder="Session name")
+				
+				div.btn-group.dropup
+					button.btn Save
+					button.btn Temp
 		
-		<fieldset id="rename"><legend id="rename-legend"></legend>
-			<div class="box">
-				<input type="text" id="rename-text" class="flex" data-action="" data-actionindex="1">
-				<button data-action="" data-actionindex="1">Rename</button>
-				<button data-view="main">Cancel</button>
-			</div>
-		</fieldset>
-		
-		<fieldset id="confirm"><legend>Confirm</legend>
-			<p id="confirm-text"></p>
-			<span>
-				<button data-view="main" data-action="">Yes</button>
-				<button data-view="main">No</button>
-			</span>
-		</fieldset>
-		
-		<script src="scripts/errors.js"></script>
-		<script src="scripts/jquery.js"></script>
-		<script src="scripts/popup.js"></script>
-	</body>
-</html>
+		script(src="scripts/jquery.js")
+		script(src="scripts/bootstrap.js")

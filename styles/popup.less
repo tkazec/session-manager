@@ -1,48 +1,15 @@
+/*** setup ***/
+@import "bootstrap/bootstrap";
+@import "fontawesome";
+
+
 /*** global ***/
 a {
-	color: blue;
 	cursor: pointer;
-	text-decoration: none;
-}
-a:hover, a:focus {
-	outline: none;
-	text-decoration: underline;
-}
-a[title] {
-	text-decoration: none;
 }
 
 body {
-	font: 11px/14px Arial, sans-serif;
-	margin: 5px 8px 0px 8px;
-	width: 300px;
-}
-body > fieldset {
-	display: none;
-}
-
-button + button {
-	margin-left: -1px;
-}
-
-fieldset {
-	border: 1px solid #B2B2B2;
-	margin: 0 2px 10px 2px;
-	padding: 2px 5px 4px 5px;
-}
-
-hr {
-	border-top: 1px solid #B2B2B2;
-	margin: 5px auto;
-}
-
-legend {
-	padding: 0 1px;
-}
-
-ul {
-	margin: 4px 0;
-	padding-left: 20px;
+	margin: 8px 8px 0 8px;
 }
 
 .box {
@@ -56,68 +23,52 @@ ul {
 
 
 /*** main view ***/
-#main {
-	-webkit-box-orient: vertical;
-	display: -webkit-box;
+#toolbar {
+	margin-bottom: 4px;
+	margin-top: 0;
+	
+	.btn-group + .btn-group {
+		margin-left: 9px;
+	}
+	
+	.btn {
+		width: 50px;
+	}
+	.btn-group:first-child > .btn {
+		width: 84px;
+	}
 }
 
-#main-outdated {
-	background: #FDDFDE;
-	display: none;
-	text-align: justify;
+#list {
+	border: 1px solid @grayLighter;
+	border-radius: 4px;
+	
+	& > li {
+		padding: 4px;
+		
+		&:hover {
+			background: @tableBackgroundAccent;
+		}
+		
+		& + li {
+			border-top: 1px solid @grayLighter;
+		}
+		
+		& > a, & > a:hover {
+			color: @textColor;
+		}
+		
+		& > span {
+			color: @grayLight;
+			display: none;
+			float: right;
+		}
+		&:hover > span {
+			display: inline;
+		}
+	}
 }
 
-#main-saved-temp {
-	font-style: italic;
-	text-align: center;
-}
-
-#main-saved-list {
-	max-height: 398px;
-	overflow: auto;
-}
-#main-saved-list::-webkit-scrollbar {
-	width: 8px;
-}
-#main-saved-list::-webkit-scrollbar-thumb {
-	background: #B2B2B2;
-}
-#main-saved-list > div > big:hover {
-	color: #B2B2B2;
-	cursor: pointer;
-	border-bottom: 1px dashed #B2B2B2;
-}
-#main-saved-list > div > big + a {
-	float: right;
-	font-size: larger;
-	margin-top: -3px;
-}
-#main-saved-list > div > span {
-	float: right;
-}
-
-#main-changelog {
-	background: #DDD;
-	display: none;
-}
-
-
-/*** import view ***/
-#import-file {
-	width: 1px;
-}
-
-#import-message {
-	display: none;
-}
-
-
-/*** export view ***/
-#export > span, #confirm > span {
-	float: right;
-}
-
-#export-check {
-	color: #F00;
-	display: none;
+#save-name {
+	margin-right: 4px;
 }
