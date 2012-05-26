@@ -58,13 +58,14 @@ body {
 			color: @textColor;
 		}
 		
-		& > span {
+		&::after {
 			color: @grayLight;
+			content: attr(data-tabcount);
 			display: none;
 			float: right;
 		}
-		&:hover > span {
-			display: inline;
+		&:hover::after {
+			display: initial;
 		}
 	}
 }
