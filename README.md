@@ -2,8 +2,9 @@ A simple yet powerful Chrome extension for managing sets of tabs. https://chrome
 
 ---
 
-Posts involving Session Manager:
+Posts about Session Manager:
 
+* http://stadt-bremerhaven.de/google-chrome-session-manager/
 * https://plus.google.com/114368870393867455297/posts/ddK2R61SKDe
 * https://plus.google.com/114368870393867455297/posts/6ER4wjVqhDB
 * http://essays.tkaz.ec/session-manager-analytics/
