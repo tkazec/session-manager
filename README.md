@@ -21,6 +21,7 @@ Todo/eventual possibilities:
 * Autosaved session.
 * Session organizing (sorting).
 * New UI.
+	* Start sessions from the current tab? (consistent with adding)
 
 ---
 
