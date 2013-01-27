@@ -1,5 +1,5 @@
 #!/bin/bash
-# $ bash build.sh outdir ga-id ec-id
+# $ bash build.sh outdir ga-id ratchet-id
 
 SRCDIR="$( cd "$( dirname "$0" )" && pwd )"
 OUTDIR=$1
