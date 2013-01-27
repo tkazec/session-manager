@@ -14,7 +14,7 @@
 		"default_popup": "popup.html"
 	},
 	"background": {
-		"scripts": ["scripts/errors.js", "scripts/background.js"]
+		"scripts": ["js/errors.js", "js/background.js"]
 	},
 	"content_security_policy": "script-src 'self' https://d2tf6sbdgil6xr.cloudfront.net https://submit.ratchet.io https://ssl.google-analytics.com; object-src 'self'",
 	"minimum_chrome_version": "20",
