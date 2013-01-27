@@ -61,12 +61,6 @@ ul {
 	display: -webkit-box;
 }
 
-#main-outdated {
-	background: #FDDFDE;
-	display: none;
-	text-align: justify;
-}
-
 #main-saved-temp {
 	font-style: italic;
 	text-align: center;
