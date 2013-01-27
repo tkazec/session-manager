@@ -1,9 +1,6 @@
 (function(){ "use strict";
 
 /*** utils ***/
-window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder;
-window.URL = window.webkitURL || window.URL;
-
 var utils = {
 	view: function(name){
 		$("body").children().hide();
@@ -118,10 +115,9 @@ var actions = {
 	}],
 	
 	export: [function(){
-		var bb = new BlobBuilder();
-		bb.append(localStorage.sessions);
+		var data = new Blob([localStorage.sessions]);
 		
-		$("#export-link").prop("href", window.URL.createObjectURL(bb.getBlob("text/plain")));
+		$("#export-link").prop("href", (window.URL || window.webkitURL).createObjectURL(data));
 	}, function(){
 		$("#export-check").fadeIn().delay(2000).fadeOut();
 		
