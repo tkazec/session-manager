@@ -1,5 +1,5 @@
-var _errs=["##EC##"];(function(a,b){a.onerror=function(){_errs.push(arguments)};
-var d=function(){var a=b.createElement("script"),c=b.getElementsByTagName("script")[0];
-a.src="https://d15qhc0lu1ghnk.cloudfront.net/beacon.js";a.async=!0;
-c.parentNode.insertBefore(a,c)};a.addEventListener?a.addEventListener("load",d,!1):
-a.attachEvent("onload",d)})(window,document);
+var _ratchetParams = {"server.environment": "production"};
+_ratchetParams["notifier.snippet_version"] = "1"; var _ratchet=["##RATCHET##", _ratchetParams];
+(function(w,d){w.onerror=function(e,u,l){_ratchet.push({_t:'uncaught',e:e,u:u,l:l});};var i=function(){var s=d.createElement("script");var 
+f=d.getElementsByTagName("script")[0];s.src="https://d2tf6sbdgil6xr.cloudfront.net/js/1/ratchet.min.js";s.async=!0;
+f.parentNode.insertBefore(s,f);};if(w.addEventListener){w.addEventListener("load",i,!1);}else{w.attachEvent("onload",i);}})(window,document);
