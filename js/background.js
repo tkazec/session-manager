@@ -2,8 +2,10 @@ var _gaq = _gaq || [];
 
 (function () {
 
-/*** setup ***/
-var version = "3.4.4";
+///////////////////////////////////////////////////////////////////////////////
+// Setup
+///////////////////////////////////////////////////////////////////////////////
+var version = "3.4.5";
 
 localStorage.sessions = localStorage.sessions || '{}';
 localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
@@ -38,7 +40,9 @@ document.body.appendChild(function () {
 }());
 
 
-/*** omnibox ***/
+///////////////////////////////////////////////////////////////////////////////
+// Omnibox
+///////////////////////////////////////////////////////////////////////////////
 chrome.omnibox.onInputChanged.addListener(function (text, suggest) {
 	var sessions = JSON.parse(localStorage.sessions);
 	text = text.trim();
@@ -81,7 +85,9 @@ chrome.omnibox.onInputEntered.addListener(function (name) {
 chrome.omnibox.setDefaultSuggestion({ description: "Open a session in this window" });
 
 
-/*** open ***/
+///////////////////////////////////////////////////////////////////////////////
+// Opening
+///////////////////////////////////////////////////////////////////////////////
 window.openSession = function (cwinId, urls, e, isTemp) {
 	var open = JSON.parse(localStorage.open);
 	var action = e ? (((e.ctrlKey || e.metaKey) && "ctrl/cmd+click") || (e.shiftKey && "shift+click") || (e.altKey && "alt+click") || "click") : open.add;

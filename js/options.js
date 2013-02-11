@@ -1,6 +1,6 @@
-(function(){ "use strict";
+(function () {
 
-$("select").each(function(){
+$("select").each(function () {
 	$(this)
 		.append('<option value="none">&lt;none&gt;</option>')
 		.append('<option value="click">click</option>')
@@ -8,17 +8,17 @@ $("select").each(function(){
 		.append('<option value="ctrl/cmd+click">ctrl/cmd+click</option>')
 		.append('<option value="alt+click">alt/opt+click</option>')
 		.find("option[value='" + JSON.parse(localStorage.open)[this.id.split("-")[1]] + "']").prop("selected", true);
-}).change(function(){
+}).change(function () {
 	var open = JSON.parse(localStorage.open);
 	open[this.id.split("-")[1]] = this.value;
 	localStorage.open = JSON.stringify(open);
 });
 
-$("[name='pinned-save']").change(function(){
+$("[name='pinned-save']").change(function () {
 	localStorage.pinned = this.value;
 }).filter("[value='" + localStorage.pinned + "']").prop("checked", true);
 
-$("#pinned-noreplace").change(function(){
+$("#pinned-noreplace").change(function () {
 	if (this.checked) {
 		localStorage.noreplacingpinned = true;
 	} else {
