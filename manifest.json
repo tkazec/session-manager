@@ -1,6 +1,6 @@
 {
 	"name": "Session Manager",
-	"version": "3.4.5",
+	"version": "3.4.6",
 	"manifest_version": 2,
 	"description": "A simple yet powerful extension for managing sets of tabs.",
 	"icons": {
@@ -9,15 +9,18 @@
 		"128": "img/128.png"
 	},
 	"browser_action": {
-		"default_icon": "img/19.png",
+		"default_icon": {
+			"19": "img/19-1x.png",
+			"38": "img/19-2x.png"
+		},
 		"default_title": "Session Manager",
 		"default_popup": "popup.html"
 	},
 	"background": {
 		"scripts": ["js/errors.js", "js/background.js"]
 	},
-	"content_security_policy": "script-src 'self' https://d2tf6sbdgil6xr.cloudfront.net https://submit.ratchet.io https://ssl.google-analytics.com; object-src 'self'",
-	"minimum_chrome_version": "20",
+	"content_security_policy": "script-src 'self' https://d37gvrvc0wt4s1.cloudfront.net https://api.rollbar.com https://ssl.google-analytics.com; object-src 'self'",
+	"minimum_chrome_version": "26",
 	"offline_enabled": true,
 	"omnibox": { "keyword": "session" },
 	"options_page": "options.html",
