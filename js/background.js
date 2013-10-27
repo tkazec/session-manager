@@ -12,14 +12,14 @@ localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click
 localStorage.pinned = localStorage.pinned || "skip";
 
 _gaq.push(
-	["_setAccount", "##GA##"],
+	["_setAccount", "##GAID##"],
 	["_setSessionCookieTimeout", 0],
 	["_setCustomVar", 1, "Version", version, 1],
 	["_trackPageview", "/"]
 );
 
 if (localStorage.version === version) {
-	if ("temp" in localStorage) {
+	if (localStorage.temp) {
 		JSON.parse(localStorage.temp).forEach(function (v) {
 			chrome.tabs.create({ url: v });
 		});
