@@ -5,7 +5,7 @@ var _gaq = _gaq || [];
 ///////////////////////////////////////////////////////////////////////////////
 // Setup
 ///////////////////////////////////////////////////////////////////////////////
-var version = "3.4.5";
+var version = "3.4.6";
 
 localStorage.sessions = localStorage.sessions || '{}';
 localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
@@ -48,6 +48,7 @@ chrome.omnibox.onInputChanged.addListener(function (text, suggest) {
 	text = text.trim();
 	var ltext = text.toLowerCase();
 	var suggestions = [];
+	var indexes = {};
 	
 	if (text.length) {
 		chrome.omnibox.setDefaultSuggestion({
@@ -57,16 +58,25 @@ chrome.omnibox.onInputChanged.addListener(function (text, suggest) {
 		Object.keys(sessions).forEach(function (name) {
 			var index = name.toLowerCase().indexOf(ltext);
 			
-			index !== -1 && suggestions.push({
-				content: name,
-				description: name.substring(0, index) + "<match>" + name.substr(index, text.length) + "</match>" + name.substr(index + text.length),
-				index: index
-			});
+			if (index !== -1) {
+				var match = "<match>" + name.slice(index, index + text.length) + "</match>";
+				
+				suggestions.push({
+					content: name,
+					description: name.slice(0, index) + match + name.slice(index + text.length)
+				});
+				
+				indexes[name] = index;
+			}
 		});
 		
-		suggest(suggestions.sort(function (a, b) {
-			return a.index === b.index ? (a.content.length === b.content.length ? 0 : a.content.length - b.content.length) : a.index - b.index;
-		}));
+		suggestions.sort(function (a, b) {
+			return indexes[a.content] === indexes[b.content]
+				? (a.content.length === b.content.length ? 0 : a.content.length - b.content.length)
+				: indexes[a.content] - indexes[b.content];
+		});
+		
+		suggest(suggestions);
 	} else {
 		chrome.omnibox.setDefaultSuggestion({ description: "Open a session in this window" });
 	}
