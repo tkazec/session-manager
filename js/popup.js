@@ -233,7 +233,7 @@ $("#main-saved-list").on("click", "big, div > a:not([title])", function(){
 	
 	utils.action(this.tagName === "BIG" ? "rename" : "remove");
 }).on("click", "span > a", function(e){
-	var action = this.innerText.toLowerCase(),
+	var action = this.textContent.toLowerCase(),
 		name = state.name = this.parentNode.parentNode.dataset.name;
 	
 	if (action === "open") {
@@ -246,7 +246,7 @@ $("#main-saved-list").on("click", "big, div > a:not([title])", function(){
 });
 
 $("#main-saved-temp").on("click", "a:not([title])", function(e){
-	var action = this.innerText.toLowerCase();
+	var action = this.textContent.toLowerCase();
 	state.name = null;
 	
 	if (action === "open") {
