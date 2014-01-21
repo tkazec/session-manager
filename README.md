@@ -1,16 +1,8 @@
-A simple yet powerful Chrome extension for managing sets of tabs. https://chrome.google.com/webstore/detail/mghenlmbmjcpehccoangkdpagbcbkdpc
+Simple yet powerful tabset management for Chrome. https://chrome.google.com/webstore/detail/mghenlmbmjcpehccoangkdpagbcbkdpc
 
 ---
 
-Posts involving Session Manager:
-
-* https://plus.google.com/114368870393867455297/posts/ddK2R61SKDe
-* https://plus.google.com/114368870393867455297/posts/6ER4wjVqhDB
-* http://essays.tkaz.ec/session-manager-analytics/
-
----
-
-Todo/eventual possibilities:
+Todo:
 
 * New name and logo.
 * Internationalize.
@@ -23,4 +15,4 @@ Todo/eventual possibilities:
 
 ---
 
-© 2013 [Teddy Cross](http://tkaz.ec), shared under the [MIT License](http://www.opensource.org/licenses/MIT).
+© 2014 [Teddy Cross](http://tkaz.ec), shared under the [MIT License](http://www.opensource.org/licenses/MIT).
