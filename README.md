@@ -15,4 +15,4 @@ Todo:
 
 ---
 
-© 2014 [Teddy Cross](http://tkaz.ec), shared under the [MIT License](http://www.opensource.org/licenses/MIT).
+© 2016 [Teddy Cross](https://teddy.io), shared under the [MIT license](https://opensource.org/licenses/MIT).
