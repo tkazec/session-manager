@@ -1,9 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<title>Session Manager</title>
-		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/options.css">
 	</head>
 	<body>
@@ -11,23 +10,39 @@
 			<h1>Options</h1>
 			
 			<h2>Opening sessions</h2>
-			<div id="open">
-				<label for="open-add">Add to current window</label><select id="open-add"></select>
-				<label for="open-replace">Replace current window</label><select id="open-replace"></select>
-				<label for="open-new">Open in new normal window</label><select id="open-new"></select>
-				<label for="open-incognito">Open in new incognito window</label><select id="open-incognito"></select>
-			</div>
+			<label>
+				<span>Add to current window</span>
+				<select id="open-add"></select>
+			</label>
+			<label>
+				<span>Replace current window</span>
+				<select id="open-replace"></select>
+			</label>
+			<label>
+				<span>Open in new normal window</span>
+				<select id="open-new"></select>
+			</label>
+			<label>
+				<span>Open in new incognito window</span>
+				<select id="open-incognito"></select>
+			</label>
 			
 			<h2>Pinned tabs</h2>
 			<div>
-				<div>
-					<label><input type="radio" name="pinned-save" value="skip"> Don't save pinned tabs</label>
-					<label><input type="radio" name="pinned-save" value="strip"> Save pinned tabs as normal tabs</label>
-					<!--<label><input type="radio" name="pinned-save" value="save"> Save pinned tabs and their pinned state</label>-->
-				</div>
-				
-				<label><input type="checkbox" id="pinned-noreplace"> Leave pinned tabs alone when replacing windows</label>
+				<label>
+					<input type="radio" name="pinned-save" value="skip">
+					<span>Don't save pinned tabs</span>
+				</label>
+				<label>
+					<input type="radio" name="pinned-save" value="strip">
+					<span>Save pinned tabs as normal tabs</span>
+				</label>
 			</div>
+			
+			<label>
+				<input type="checkbox" id="pinned-noreplace">
+				<span>Leave pinned tabs alone when replacing windows</span>
+			</label>
 		</section>
 		
 		<section>

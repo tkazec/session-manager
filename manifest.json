@@ -1,7 +1,7 @@
 {
-	"name": "Session Manager",
-	"version": "3.4.6",
 	"manifest_version": 2,
+	"name": "Session Manager",
+	"version": "3.5.0",
 	"description": "Simple yet powerful tabset management. Quickly and easily save, update, remove, and restore sets of tabs!",
 	"icons": {
 		"16": "img/16.png",
@@ -20,9 +20,14 @@
 		"scripts": ["js/errors.js", "js/background.js"]
 	},
 	"content_security_policy": "script-src 'self' https://d37gvrvc0wt4s1.cloudfront.net https://api.rollbar.com https://ssl.google-analytics.com; object-src 'self'",
-	"minimum_chrome_version": "26",
+	"minimum_chrome_version": "40",
 	"offline_enabled": true,
-	"omnibox": { "keyword": "session" },
-	"options_page": "options.html",
+	"omnibox": {
+		"keyword": "session"
+	},
+	"options_ui": {
+		"chrome_style": true,
+		"page": "options.html"
+	},
 	"permissions": ["tabs"]
 }
