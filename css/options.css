@@ -1,59 +1,45 @@
-html {
-	font-size: 75%;
-}
-
 body {
 	font-size: 1rem;
 	min-width: 500px;
-}
-
-div {
-	margin-bottom: 1rem;
-	overflow: hidden;
 }
 
 h1 {
 	font-size: 2rem;
 	margin: 0rem 0rem 1rem 0rem;
 }
+
 h2 {
 	font-size: 1.5rem;
 	margin: 1rem 0rem 0.5rem 0rem;
 }
-h1 + h2 {
-	margin-top: 1rem;
+
+html {
+	font-size: 75%;
 }
 
-p {
-	margin-bottom: 1rem;
-	overflow: hidden;
-	text-align: justify;
-}
-
-ul {
-	margin-bottom: 1rem;
-	/*padding-left: 4rem;*/
-	text-align: justify;
-}
-
-section {
-	margin-bottom: 1rem;
-	overflow: hidden;
+input {
+	margin: 0rem 0.5rem 0rem 0rem !important;
 }
 
 label {
 	align-items: center;
 	display: flex;
-}
-
-label + label {
-	margin-top: 0.5rem;
+	margin: 0.5rem 0rem 0rem 0rem;
 }
 
 label > span {
 	flex: 1;
 }
 
-input {
-	margin-right: 0.5rem !important;
+p {
+	margin: 0rem 0rem 1rem 0rem;
+	text-align: justify;
+}
+
+section + section {
+	margin: 2rem 0rem 0rem 0rem;
+}
+
+ul {
+	margin: 0rem 0rem 1rem 0rem;
 }
