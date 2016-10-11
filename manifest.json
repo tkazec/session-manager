@@ -5,7 +5,6 @@
 	"description": "Simple yet powerful tabset management. Quickly and easily save, update, remove, and restore sets of tabs!",
 	"icons": {
 		"16": "img/16.png",
-		"48": "img/48.png",
 		"128": "img/128.png"
 	},
 	"browser_action": {
