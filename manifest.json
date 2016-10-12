@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Session Manager",
 	"version": "3.5.0",
-	"description": "Simple yet powerful tabset management. Quickly and easily save, update, remove, and restore sets of tabs!",
+	"description": "Simple yet powerful tab set management. Quickly and easily save, update, remove, and restore sets of tabs!",
 	"icons": {
 		"16": "img/16.png",
 		"128": "img/128.png"
