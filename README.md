@@ -1,4 +1,4 @@
-Simple yet powerful tabset management for Chrome. https://chrome.google.com/webstore/detail/mghenlmbmjcpehccoangkdpagbcbkdpc
+Simple yet powerful tabset management for Chrome. https://chrome.google.com/webstore/detail/session-manager/mghenlmbmjcpehccoangkdpagbcbkdpc
 
 ---
 

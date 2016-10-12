@@ -31,13 +31,17 @@ label > span {
 	flex: 1;
 }
 
+li + li {
+	margin-top: 0.5rem;
+}
+
 p {
 	margin: 0rem 0rem 1rem 0rem;
 	text-align: justify;
 }
 
 section + section {
-	margin: 2rem 0rem 0rem 0rem;
+	margin-top: 2rem;
 }
 
 ul {
