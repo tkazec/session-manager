@@ -4,14 +4,14 @@ Simple yet powerful tab set management for Chrome. https://chrome.google.com/web
 
 Todo:
 
-* New name and logo.
-* Internationalize.
-* Sync support.
+* Branding: Name, logo, and Chrome Web Store assets.
+* Localization: Support and translations.
+* Back up and sync automatically.
+* Autosaved anti-crash session.
+* Open individual tabs.
 * Restore pinned tabs.
-* Tab count -> session editor UI (select box) + open individual tabs.
-* Autosaved session.
-* Session organizing (sorting).
-* New UI.
+* Session editor.
+* List organizer.
 
 ---
 
