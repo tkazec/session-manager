@@ -1,37 +1,53 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<title>Session Manager</title>
-		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/options.css">
 	</head>
+	
 	<body>
 		<section>
 			<h1>Options</h1>
 			
 			<h2>Opening sessions</h2>
-			<div id="open">
-				<label for="open-add">Add to current window</label><select id="open-add"></select>
-				<label for="open-replace">Replace current window</label><select id="open-replace"></select>
-				<label for="open-new">Open in new normal window</label><select id="open-new"></select>
-				<label for="open-incognito">Open in new incognito window</label><select id="open-incognito"></select>
-			</div>
+			<label>
+				<span>Add to current window</span>
+				<select id="open-add"></select>
+			</label>
+			<label>
+				<span>Replace current window</span>
+				<select id="open-replace"></select>
+			</label>
+			<label>
+				<span>Open in new normal window</span>
+				<select id="open-new"></select>
+			</label>
+			<label>
+				<span>Open in new incognito window</span>
+				<select id="open-incognito"></select>
+			</label>
 			
 			<h2>Pinned tabs</h2>
-			<div>
-				<div>
-					<label><input type="radio" name="pinned-save" value="skip"> Don't save pinned tabs</label>
-					<label><input type="radio" name="pinned-save" value="strip"> Save pinned tabs as normal tabs</label>
-					<!--<label><input type="radio" name="pinned-save" value="save"> Save pinned tabs and their pinned state</label>-->
-				</div>
-				
-				<label><input type="checkbox" id="pinned-noreplace"> Leave pinned tabs alone when replacing windows</label>
-			</div>
+			<label>
+				<input type="radio" name="pinned-save" value="skip">
+				<span>Don't save pinned tabs</span>
+			</label>
+			<label>
+				<input type="radio" name="pinned-save" value="strip">
+				<span>Save pinned tabs as normal tabs</span>
+			</label>
+			
+			<label></label>
+			
+			<label>
+				<input type="checkbox" id="pinned-noreplace">
+				<span>Leave pinned tabs alone when replacing windows</span>
+			</label>
 		</section>
 		
 		<section>
-			<h1>Help</h1>
+			<h1>Guide</h1>
 			
 			<p>Session Manager is a simple yet powerful extension that makes it quick and easy to save, update, remove, and restore sets of tabs.</p>
 			
@@ -63,22 +79,38 @@
 			
 			<h2>Incognito</h2>
 			<p>"Allow in incognito" must be checked under Session Manager in chrome://extensions for the incognito features to work. Sessions can be saved and opened normally in existing incognito windows, and can be opened in new incognito windows with the combo in the "Opening sessions" options.</p>
-			
-			<h2>Comments/questions/bugs/suggestions</h2>
-			<p>If you have a problem and need a reply, feel free to send me an <a href="mailto:me@tkaz.ec">email</a>. Otherwise, leave a comment on Session Manager's <a href="https://chrome.google.com/webstore/detail/mghenlmbmjcpehccoangkdpagbcbkdpc">web store page</a>. If you're a developer and would like to contribute, awesome! Session Manager is open source, and can be found <a href="https://github.com/tkazec/session-manager">on GitHub</a>.</p>
-			
-			<h2>Who?</h2>
-			<p>I'm a 17 year old software engineer, pioneering time-based search at <a href="https://spoton.it">SpotOn</a>. My passion is creating beautiful, useful, and fun things. Like this extension? Check out my <a href="http://tkaz.ec">other stuff</a>!</p>
 		</section>
 		
 		<section>
-			<h1>Changes</h1>
+			<h1>About</h1>
 			
-			<h2>3.4.6 (2013-10-27)</h2>
+			<h2>Guarantee</h2>
+			<p>Under no circumstances will I sell, monetize, or otherwise compromise Session Manager. The complete source code is publicly available on <a href="https://github.com/tkazec/session-manager">GitHub</a>, shared under the <a href="https://opensource.org/licenses/MIT">MIT license</a>.<br>– <a href="https://teddy.io">Teddy Cross</a> :)</p>
+			
+			<h2>Contribute</h2>
+			<p>Session Manager is one of the oldest extensions in the Chrome Web Store, and needs your help to keep going! Are you an engineer or designer? Please check out the wishlist below, and <a href="mailto:teddy@teddy.io">get in touch</a>. If not, you can still help out by leaving a review on the <a href="https://chrome.google.com/webstore/detail/session-manager/mghenlmbmjcpehccoangkdpagbcbkdpc">Chrome Web Store</a>.</p>
+			
+			<h2>Wishlist</h2>
 			<ul>
-				<li>Retina support!
-				<li>Omnibox fixes.
-				<li>Misc fixes.
+				<li>Branding: Name, logo, and Chrome Web Store assets.</li>
+				<li>Localization: Support and translations.</li>
+				<li>Back up and sync automatically.</li>
+				<li>Autosaved anti-crash session.</li>
+				<li>Open individual tabs.</li>
+				<li>Restore pinned tabs.</li>
+				<li>Session editor.</li>
+				<li>List organizer.</li>
+			</ul>
+		</section>
+		
+		<section>
+			<h1>News</h1>
+			
+			<h2>3.5.0 (2016-10-14)</h2>
+			<ul>
+				<li>Three years later...</li>
+				<li>Updated the options page.</li>
+				<li>Removed error tracking, for now.</li>
 			</ul>
 		</section>
 		

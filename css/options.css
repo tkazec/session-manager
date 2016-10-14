@@ -1,72 +1,52 @@
-/*** global ***/
-a {
-	color: blue;
-	text-decoration: none;
-}
-a:hover, a:focus {
-	outline: none;
-	text-decoration: underline;
-}
-
 body {
-	font: 13px/15px "DejaVu Sans", sans-serif;
-	margin: 10px auto;
-	max-width: 600px;
-}
-
-div {
-	margin-bottom: 10px;
-	overflow: hidden;
+	font-size: 1rem;
+	width: 500px;
 }
 
 h1 {
-	font-size: 18px;
-	margin: 10px 0;
+	font-size: 2rem;
+	margin: 0rem 0rem 1rem 0rem;
 }
+
 h2 {
-	font-size: 14px;
-	margin: 20px 0 8px 0;
-}
-h1 + h2 {
-	margin-top: 10px;
+	font-size: 1.5rem;
+	margin: 1rem 0rem 0.5rem 0rem;
 }
 
-li + li {
-	margin-top: 2px;
+html {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	font-size: 75%;
 }
 
-p {
-	margin-bottom: 10px;
-	overflow: hidden;
-	text-align: justify;
-}
-
-ul {
-	margin-bottom: 10px;
-	padding-left: 40px;
-	text-align: justify;
-}
-
-section {
-	margin-bottom: 20px;
-	overflow: hidden;
-}
-
-
-/*** options ***/
 input {
-	vertical-align: baseline;
+	margin: 0rem 0.5rem 0rem 0rem !important;
 }
 
 label {
-	display: block;
+	align-items: center;
+	display: flex;
+	margin: 0.5rem 0rem 0rem 0rem;
 }
 
-#open > label {
-	clear: right;
-	float: left;
+label > span {
+	flex: 1;
 }
-#open > select {
-	clear: right;
-	float: right;
+
+li + li {
+	margin-top: 0.5rem;
+}
+
+p {
+	margin: 0rem 0rem 1rem 0rem;
+	text-align: justify;
+}
+
+section + section {
+	margin-top: 2rem;
+}
+
+ul {
+	margin: 0rem;
 }

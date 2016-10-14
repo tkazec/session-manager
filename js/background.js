@@ -5,7 +5,7 @@ var _gaq = _gaq || [];
 ///////////////////////////////////////////////////////////////////////////////
 // Setup
 ///////////////////////////////////////////////////////////////////////////////
-var version = "3.4.6";
+var version = "3.5.0";
 
 localStorage.sessions = localStorage.sessions || '{}';
 localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
