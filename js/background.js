@@ -1,22 +1,31 @@
-var _gaq = _gaq || [];
+////////////////////////////////////////////////////////////////////////////////
+// Analytics
+////////////////////////////////////////////////////////////////////////////////
+(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");
 
-(function () {
+var version = chrome.runtime.getManifest().version;
 
-///////////////////////////////////////////////////////////////////////////////
+ga("create", "##GAID##", "auto");
+ga("set", "checkProtocolTask", null);
+ga("set", "transport", "beacon");
+ga("set", "dimension1", version);
+ga("send", "pageview", "/");
+
+
+////////////////////////////////////////////////////////////////////////////////
 // Setup
-///////////////////////////////////////////////////////////////////////////////
-var version = "3.5.0";
-
+////////////////////////////////////////////////////////////////////////////////
 localStorage.sessions = localStorage.sessions || '{}';
-localStorage.open = localStorage.open || '{"add":"click", "replace":"shift+click", "new":"ctrl/cmd+click", "incognito":"alt+click"}';
 localStorage.pinned = localStorage.pinned || "skip";
-
-_gaq.push(
-	["_setAccount", "##GAID##"],
-	["_setSessionCookieTimeout", 0],
-	["_setCustomVar", 1, "Version", version, 1],
-	["_trackPageview", "/"]
-);
+localStorage.open = localStorage.open || JSON.stringify({
+	add: "click",
+	replace: "shift+click",
+	new: "ctrl/cmd+click",
+	incognito: "alt+click",
+});
 
 if (localStorage.version === version) {
 	if (localStorage.temp) {
@@ -26,23 +35,17 @@ if (localStorage.version === version) {
 		
 		delete localStorage.temp;
 		
-		_gaq.push(["_trackEvent", "Temp", "Restore"]);
+		ga("send", "event", "Temp", "Restore");
 	}
 } else {
 	localStorage.readchanges = false;
 	localStorage.version = version;
 }
 
-document.body.appendChild(function () {
-	var el = document.createElement("script");
-	el.src = "https://ssl.google-analytics.com/ga.js";
-	return el;
-}());
 
-
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // Omnibox
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 chrome.omnibox.onInputChanged.addListener(function (text, suggest) {
 	var sessions = JSON.parse(localStorage.sessions);
 	text = text.trim();
@@ -88,16 +91,16 @@ chrome.omnibox.onInputEntered.addListener(function (name) {
 	if (sessions[name]) {
 		openSession(undefined, sessions[name]);
 		
-		_gaq.push(["_trackEvent", "Session", "Omnibox"]);
+		ga("send", "event", "Session", "Omnibox");
 	}
 });
 
 chrome.omnibox.setDefaultSuggestion({ description: "Open a session in this window" });
 
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 // Opening
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 window.openSession = function (cwinId, urls, e, isTemp) {
 	var open = JSON.parse(localStorage.open);
 	var action = e ? (((e.ctrlKey || e.metaKey) && "ctrl/cmd+click") || (e.shiftKey && "shift+click") || (e.altKey && "alt+click") || "click") : open.add;
@@ -133,7 +136,5 @@ window.openSession = function (cwinId, urls, e, isTemp) {
 		return false;
 	}
 	
-	e && _gaq.push(["_trackEvent", isTemp ? "Temp" : "Session", "Open", action]);
+	e && ga("send", "event", isTemp ? "Temp" : "Session", "Open", action);
 };
-
-})();

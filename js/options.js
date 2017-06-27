@@ -1,5 +1,3 @@
-(function () {
-
 $("select").each(function () {
 	$(this)
 		.append('<option value="none">&lt;none&gt;</option>')
@@ -26,6 +24,4 @@ $("#pinned-noreplace").change(function () {
 	}
 }).prop("checked", localStorage.noreplacingpinned === "true");
 
-chrome.extension.getBackgroundPage()._gaq.push(["_trackPageview", "/options"]);
-
-})();
+chrome.extension.getBackgroundPage().ga("send", "pageview", "/options");
